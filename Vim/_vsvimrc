@@ -1,0 +1,19 @@
+" Ignore case in search
+set smartcase
+" Make sure any searches /searchPhrase doesn't need the \c escape character
+set ignorecase
+" The number of screen lines to keep above and below the cursor.
+set scrolloff=3
+" Set Shell
+set shell=\"c:\\Program\ Files\\PowerShell\\7\\pwsh.exe\"
+set shellcmdflag=-Command
+" Save file keymaps
+nmap <c-s> :w<CR>
+vmap <c-s> <Esc><c-s>gv
+imap <c-s> <Esc><c-s>
+nmap <F2> :update<CR>
+vmap <F2> <Esc><F2>gv
+imap <F2> <c-o><F2>
+nmap ZS :w<CR>
+nmap ZA :wa<CR>
+

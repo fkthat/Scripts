@@ -1,0 +1,52 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "'Cascadia Code','Ubuntu Mono',Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "terminal.integrated.shellArgs.windows": ["-NoLogo"],
+    "git.autofetch": true,
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "none",
+    "git.enableSmartCommit": true,
+    "editor.multiCursorModifier": "alt",
+    "terminal.integrated.cursorBlinking": true,
+    "editor.suggestFontSize": 12,
+    "files.associations": {
+        "*.json": "jsonc",
+        "_vimrc": "vimrc",
+        "README": "markdown"
+    },
+    "powershell.integratedConsole.suppressStartupBanner": true,
+    "powershell.integratedConsole.showOnStartup": false,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.rulers": [
+        100
+    ],
+    "mssql.connections": [
+        {
+            "server": "adipose.home.arpa",
+            "database": "",
+            "authenticationType": "SqlLogin",
+            "user": "rnovo",
+            "password": "",
+            "emptyPasswordInput": false,
+            "savePassword": true,
+            "profileName": "adipose.home.arpa"
+        }
+    ],
+    "auto-close-tag.disableOnLanguage": [
+        "typescript"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "editor.cursorSurroundingLines": 3,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["Z", "A"],
+            "commands": [":wa"]
+        },
+        {
+            "before": ["Z", "S"],
+            "commands": [":w"]
+        }
+    ]
+}
