@@ -108,8 +108,39 @@ function Start-Admin {
     Start-Process $FilePath -ArgumentList $ArgumentList  -Verb RunAs
 }
 
+# 'sed'
+
+function sed {
+    [CmdletBinding()]
+     param (
+        [Parameter(Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Path,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Pattern,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Replace
+     )
+
+     process {
+        $Path |
+            ForEach-Object {
+                $file = $_
+
+                $s = Get-Content $file |
+                    ForEach-Object {
+                        $_ -replace $Pattern, $Replace
+                    } | Join-String -Separator ([System.Environment]::NewLine)
+
+                $s > $file
+            }
+     }
+}
+
 # aliases
-New-Alias gdiff Get-Diff
-New-Alias ln New-ItemLink
-New-Alias touch Set-ItemDateTime
-New-Alias sudo Start-Admin
+New-Alias gdiff Get-Diff -Force
+New-Alias ln New-ItemLink -Force
+New-Alias touch Set-ItemDateTime -Force
+New-Alias sudo Start-Admin -Force
