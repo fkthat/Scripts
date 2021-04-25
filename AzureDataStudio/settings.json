@@ -1,0 +1,43 @@
+{
+    "datasource.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "C777F06B-202E-4480-B475-FA416154D458"
+        }
+    ],
+    "datasource.connections": [
+        {
+            "options": {
+                "connectionName": "",
+                "server": "asgard.home.arpa",
+                "database": "",
+                "authenticationType": "SqlLogin",
+                "user": "rnovo",
+                "password": "",
+                "applicationName": "azdata",
+                "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+                "databaseDisplayName": ""
+            },
+            "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+            "providerName": "MSSQL",
+            "savePassword": true,
+            "id": "f237ee1e-ec60-452e-b9da-fff7d2210e3a"
+        }
+    ],
+    "workbench.enablePreviewFeatures": true,
+    "workbench.startupEditor": "welcomePage",
+    "workbench.colorTheme": "Default Dark Azure Data Studio",
+    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.rulers": [ 100 ],
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "terminal.integrated.shellArgs.windows": ["-NoLogo"],
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.cursorBlinking": true,
+    "mssql.format.datatypeCasing": "lowercase",
+    "mssql.format.keywordCasing": "lowercase",
+    "[sql]": {
+        "editor.defaultFormatter": "Microsoft.mssql"
+    },
+    "mssql.intelliSense.lowerCaseSuggestions": true,
+}
