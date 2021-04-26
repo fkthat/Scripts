@@ -12,8 +12,6 @@
                 "server": "asgard.home.arpa",
                 "database": "",
                 "authenticationType": "SqlLogin",
-                "user": "rnovo",
-                "password": "",
                 "applicationName": "azdata",
                 "groupId": "C777F06B-202E-4480-B475-FA416154D458",
                 "databaseDisplayName": ""
