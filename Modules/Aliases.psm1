@@ -12,9 +12,8 @@ New-Alias ads "${env:ProgramFiles}\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -Force
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
 
-New-Alias vi "${env:USERPROFILE}\Bin\vim\vim82\vim.exe" -Force
-New-Alias vim "${env:USERPROFILE}\Bin\vim\vim82\vim.exe" -Force
-New-Alias dos2unix "${env:USERPROFILE}\Bin\dos2unix\dos2unix.exe" -Force
-New-Alias unix2dos "${env:USERPROFILE}\Bin\dos2unix\unix2dos.exe" -Force
-New-Alias nuget "${env:USERPROFILE}\Bin\NuGet\nuget.exe" -Force
-
+New-Alias vi "${env:USERPROFILE}\Programs\vim\vim82\vim.exe" -Force
+New-Alias vim "${env:USERPROFILE}\Programs\vim\vim82\vim.exe" -Force
+New-Alias dos2unix "${env:USERPROFILE}\Programs\dos2unix\dos2unix.exe" -Force
+New-Alias unix2dos "${env:USERPROFILE}\Programs\dos2unix\unix2dos.exe" -Force
+New-Alias nuget "${env:USERPROFILE}\Programs\NuGet\nuget.exe" -Force

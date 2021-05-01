@@ -32,16 +32,16 @@ function Start-VSCode {
         [string[]]
         $Agruments)
 
-    $code = "${env:ProgramFiles}\Microsoft VS Code\bin\code.cmd"
+    $code = "${env:LocalAppData}\Programs\Microsoft VS Code\bin\code.cmd"
 
     if(-not $Agruments) {
         $Agruments = @("-n", ".")
     }
 
-    & $code $Agruments
+    Start-Process $code $Agruments
 }
 
 # aliases
-New-Alias clgit Clear-Git
-New-Alias vs Start-VisualStudio
-New-Alias code Start-VSCode
+New-Alias clgit Clear-Git -Force
+New-Alias vs Start-VisualStudio -Force
+New-Alias code Start-VSCode -Force

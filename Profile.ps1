@@ -6,14 +6,9 @@
 Import-Module posh-git
 
 # custom modules
-Get-Item $PROFILE |
-    ForEach-Object { $_.Target ?? $_ } |
-    Split-Path -Parent |
-    Join-Path -ChildPath "Modules" |
-    Get-ChildItem  -Filter *.psm1 |
+Get-ChildItem "$PSScriptRoot\Modules" -Filter *.psm1 |
     Select-Object -ExpandProperty FullName |
     Import-Module
 
 # PSReadLine settings
 Set-PSReadLineOption -EditMode vi
-
