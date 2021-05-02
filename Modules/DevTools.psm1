@@ -28,17 +28,13 @@ function Start-VisualStudio {
 
 function Start-VSCode {
     param(
-        [Parameter(ValueFromRemainingArguments = $true)]
+        [Parameter(ValueFromPipeline = $true)]
         [string[]]
-        $Agruments)
+        $Path = ".")
 
+    $Agruments = $Path + "-n";
     $code = "${env:LocalAppData}\Programs\Microsoft VS Code\bin\code.cmd"
-
-    if(-not $Agruments) {
-        $Agruments = @("-n", ".")
-    }
-
-    Start-Process $code $Agruments
+    & $code $Agruments
 }
 
 # aliases
