@@ -94,18 +94,10 @@ function Edit-Hosts {
 
 # Start Windows Terminal as administrator
 
-function Start-Admin {
+function Start-AdminTerminal {
     [CmdletBinding()]
-    param (
-        [Parameter(Position = 0)]
-        [string]
-        $FilePath = 'shell:appsFolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App',
-
-        [Parameter(ValueFromRemainingArguments = $true)]
-        [string[]]
-        $ArgumentList
-    )
-    Start-Process $FilePath -ArgumentList $ArgumentList  -Verb RunAs
+    $term = 'shell:appsFolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App'
+    Start-Process $term -Verb RunAs -Red
 }
 
 # 'sed'
@@ -143,4 +135,4 @@ function sed {
 New-Alias gdiff Get-Diff -Force
 New-Alias ln New-ItemLink -Force
 New-Alias touch Set-ItemDateTime -Force
-New-Alias sudo Start-Admin -Force
+New-Alias sa Start-AdminTerminal -Force
