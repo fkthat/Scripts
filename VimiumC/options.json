@@ -1,0 +1,33 @@
+{
+	"name": "Vimium C",
+	"@time": "5/1/2021, 2:29:49 PM",
+	"time": 1619904589285,
+	"environment": {
+		"extension": "1.89.0",
+		"platform": "win",
+		"chrome": 90
+	},
+	"ignoreKeyboardLayout": 2,
+	"searchEngines": [
+		"bi|bing: https://www.bing.com/search?q=%s \\",
+		"  blank=https://www.bing.com/ Bing",
+		"",
+		"g|go|gg|google|Google: https://www.google.com/search?q=%s \\",
+		"  www.google.com re=/^(?:\\.[a-z]{2,4})?\\/search\\b.*?[#&?]q=([^#&]*)/i\\",
+		"  blank=https://www.google.com/ Google",
+		"",
+		"w|wiki: https://www.wikipedia.org/w/index.php?search=%s Wikipedia",
+		"",
+		"v.m|v\\:math: vimium://math\\ $S re= Calculate",
+		"",
+		"gh|github: https://github.com/search?q=$s \\",
+		"  blank=https://github.com/ GitHub Repo",
+		"",
+		"js\\:|Js: javascript:\\ $S; JavaScript",
+		"",
+		"vim: https://vim.fandom.com/wiki/Special:Search?query=$s&scope=internal&navigationSearch=true \\",
+		"  blank=https://vim.fandom.com/wiki/Vim_Tips_Wiki Vim",
+		""
+	],
+	"searchUrl": "https://www.bing.com/search?q=$s Bing"
+}
