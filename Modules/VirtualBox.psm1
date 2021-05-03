@@ -31,14 +31,18 @@ function Start-VM {
             Get-VM | Where-Object { $_.Running -eq $false -and $_.Name -like "$w*" } |
                 Select-Object -ExpandProperty Name
         })]
-        [string] $Name,
+        [string[]]
+        $Name,
+
         [Parameter(Mandatory = $false)]
-        [ValidateSet('headless', 'gui')]
-        [string] $Gui = 'headless'
+        [ValidateSet( 'gui', 'headless', 'separate')]
+        $GuiType = 'headless'
     )
 
     process {
-        & $vbman startvm $Name -type $Gui
+        $Name | ForeachObject {
+            & $vbman startvm $_ -type $GuiType
+        }
     }
 }
 
@@ -83,7 +87,7 @@ function Compress-VMDisk {
     }
 }
 
-New-Alias vbman "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe" -Force
+New-Alias vbman "$vbman" -Force
 New-Alias gvm Get-VM -Force
 New-Alias savm Start-VM -Force
 New-Alias spvm Stop-VM -Force
