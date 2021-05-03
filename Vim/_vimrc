@@ -55,7 +55,7 @@ autocmd BufRead,BufNewFile *.props,*.csproj set filetype=xml
 " Yaml files settings
 autocmd BufRead,BufNewFile *.yml,*.yaml set tabstop=2 | set shiftwidth=2
 " Set Shell
-set shell=\"c:\\Program\ Files\\PowerShell\\7\\pwsh.exe\"
+set shell=\"C:\\Program\ Files\\PowerShell\\7\\pwsh.exe\"\ -NoLogo
 set shellcmdflag=-Command
 " Save file keymaps
 nmap <c-s> :w<CR>
