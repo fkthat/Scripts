@@ -97,7 +97,7 @@ function Edit-Hosts {
 function Start-AdminTerminal {
     [CmdletBinding()]
     $term = 'shell:appsFolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App'
-    Start-Process $term -Verb RunAs -Red
+    Start-Process $term -Verb RunAs 
 }
 
 # 'sed'
