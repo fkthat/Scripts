@@ -35,12 +35,12 @@ function Start-VM {
         $Name,
 
         [Parameter(Mandatory = $false)]
-        [ValidateSet( 'gui', 'headless', 'separate')]
+        [ValidateSet( 'gui', 'headless')]
         $GuiType = 'headless'
     )
 
     process {
-        $Name | ForeachObject {
+        $Name | ForEach-Object {
             & $vbman startvm $_ -type $GuiType
         }
     }
