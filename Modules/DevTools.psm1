@@ -15,26 +15,35 @@ function Clear-Git {
 function Start-VisualStudio {
     param(
         [Parameter(ValueFromPipeline = $true)]
-        [string[]] $Solutions)
+        [string[]] 
+        $Path)
 
-    $vs = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Preview\Common7\IDE\devenv.exe"
+    begin {
+        $vs = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
 
-    if(-not $Solutions) {
-        $Solutions = (Get-ChildItem -Filter *.sln)
+        if(-not $Path) {
+            $Path = (Get-ChildItem -Filter *.sln)
+        }
     }
 
-    $Solutions | ForEach-Object { & $vs $_ }
+    process {
+        $Path | ForEach-Object { & $vs $_ }
+    }
 }
 
 function Start-VSCode {
     param(
         [Parameter(ValueFromPipeline = $true)]
         [string[]]
-        $Path = ".")
+        $Path = '.')
 
-    $Agruments = $Path + "-n";
-    $code = "${env:LocalAppData}\Programs\Microsoft VS Code\bin\code.cmd"
-    & $code $Agruments
+    begin {
+        $code = "${env:LocalAppData}\Programs\Microsoft VS Code\bin\code.cmd"
+    }
+
+    process {
+        & $code $Path -n 
+    }
 }
 
 # aliases
