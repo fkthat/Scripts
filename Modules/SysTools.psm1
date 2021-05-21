@@ -135,4 +135,4 @@ function sed {
 New-Alias gdiff Get-Diff -Force
 New-Alias ln New-ItemLink -Force
 New-Alias touch Set-ItemDateTime -Force
-New-Alias sa Start-AdminTerminal -Force
+New-Alias su Start-AdminTerminal -Force
