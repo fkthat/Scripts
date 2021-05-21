@@ -17,3 +17,6 @@ New-Alias vim "${env:USERPROFILE}\Programs\vim\vim82\vim.exe" -Force
 New-Alias dos2unix "${env:USERPROFILE}\Programs\dos2unix\dos2unix.exe" -Force
 New-Alias unix2dos "${env:USERPROFILE}\Programs\dos2unix\unix2dos.exe" -Force
 New-Alias nuget "${env:USERPROFILE}\Programs\NuGet\nuget.exe" -Force
+New-Alias dtui "${env:USERPROFILE}\Programs\dt1.8.3\drop\dtui.exe" -Force
+New-Alias ffmpeg "${env:USERPROFILE}\Programs\ffmpeg\bin\ffmpeg.exe" -Force
+
