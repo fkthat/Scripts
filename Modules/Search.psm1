@@ -57,7 +57,7 @@ function Search-Mdn {
         "https://developer.mozilla.org/en-US/search?q={0}"
 }
 
-function Search-Wiki {
+function Search-WikiRu {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, ValueFromRemainingArguments)]
@@ -66,6 +66,17 @@ function Search-Wiki {
 
     Open-Search $Terms -UrlFormat `
         "https://ru.wikipedia.org/w/index.php?search={0}"
+}
+
+function Search-WikiEn {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments)]
+        [string[]] $Terms
+    )
+
+    Open-Search $Terms -UrlFormat `
+        "https://en.wikipedia.org/w/index.php?search={0}"
 }
 
 function Search-Cald {
@@ -79,14 +90,32 @@ function Search-Cald {
         "https://dictionary.cambridge.org/dictionary/english/{0}"
 }
 
+function Search-WikiVim {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments)]
+        [string[]] $Terms
+    )
+
+    Open-Search $Terms -UrlFormat `
+        "https://vim.fandom.com/wiki/Special:Search?search=%s"
+}
+
+
 New-Alias srbing Search-Bing -Force
 New-Alias srapi Search-Api -Force
 New-Alias srdocs Search-docs -Force
 New-Alias srmdn Search-Mdn -Force
-New-Alias srwiki Search-Wiki -Force
+New-Alias srwikiru Search-WikiRu -Force
+New-Alias srwikien Search-WikiEn -Force
 New-Alias srcald Search-Cald -Force
+New-Alias srwikivim Search-WikiVim -Force
 
 Export-ModuleMember 'Search-Bing', 'Search-Api', 'Search-Docs', 
-    'Search-Mdn', 'Search-Wiki', 'Search-Cald'
+    'Search-Mdn', 'Search-WikiRu', 'Search-WikiEn', 'Search-Cald',
+    'Search-WikiVim'
 
-Export-ModuleMember -Alias 'srbing', 'srapi', 'srdocs', 'srmdn', 'srwiki', 'srcald'
+Export-ModuleMember -Alias 'srbing', 'srapi', 'srdocs',
+    'srmdn', 'srwikiru', 'srwikien', 'srcald',
+    'srwikivim'
+
