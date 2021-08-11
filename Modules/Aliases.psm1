@@ -11,6 +11,8 @@ New-Alias ads "${env:ProgramFiles}\Azure Data Studio\azuredatastudio.exe" -Force
 
 New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -Force
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
+New-Alias dotnet-core-uninstall "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -Force
+New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
 
 New-Alias vi "${env:USERPROFILE}\Programs\vim\vim82\vim.exe" -Force
 New-Alias vim "${env:USERPROFILE}\Programs\vim\vim82\vim.exe" -Force
@@ -20,3 +22,4 @@ New-Alias nuget "${env:USERPROFILE}\Programs\NuGet\nuget.exe" -Force
 New-Alias dtui "${env:USERPROFILE}\Programs\dt1.8.3\drop\dtui.exe" -Force
 New-Alias ffmpeg "${env:USERPROFILE}\Programs\ffmpeg\bin\ffmpeg.exe" -Force
 
+New-Alias procexp "${env:UserProfile}\Programs\Sysinternals\ProcessXP\procexp64.exe" -Force
