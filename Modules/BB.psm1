@@ -1,16 +1,17 @@
-$dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.13\System.Windows.Forms.dll"
+$dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.17\System.Windows.Forms.dll"
 
 if(Test-Path $dll) {
-
     [System.Reflection.Assembly]::LoadFrom($dll)
 
-    $ApiKey = '01000000d08c9ddf0115d1118c7a00c04fc297eb01000000ba083c6a0e76564d874416c8fc43731c' +
-    '00000000020000000000106600000001000020000000a928585187e9955d8113e452590c5138c68c6f1e20f382' +
-    '8de2ae8c4ed39ed2a8000000000e80000000020000200000009e49fa6fe7c46329c37dfbb4468d5c3570dd39a9' +
-    'e720ce45ae3f66a208a499435000000017047611d1d1f85c3429e0329f3d14f799668dd70a822ecea229300985' +
-    'f7d530a87fc480e79e7ea7c7a9e2ef38e8b831075a2579cb206afc720ea8f1cf35662aeea20a55cf677f521b45' +
-    '50c88d360b0240000000ede2b3ccc2b753e1b51efb12feab64ccdb59088182b1b0a2252474fd149d62fed089e5' +
-    '7ae8951df30cf83e0d7cfcfc3a2f6685de0cebb278fcaa068e77ecb91d'
+    $ApiKey = `
+        '01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4b16b938aa09249a4cb328c9969b496' +
+        '000000000200000000001066000000010000200000008aac97451a45bb62bc6ff9767ada4682e3ee' +
+        'a66aba7c3a71b50151267c138839000000000e8000000002000020000000445d4ceb76f1080f7426' +
+        '40d088cc7702623df81a5a7e8f9c34933d7888f08cc550000000ed4f9ee60ca362e89d5f3d5ff10f' +
+        '35e0d9c60e8e9dfe8e99648afc2064daaeba5b9e456727d501b95ee4d1ddbb881424b7170acf49e5' +
+        '44bdb102ef75d28ce9ba9d644ecb557ed5a160b39c8ea12ee87440000000299cd00f1d1ae9bda5a3' +
+        'ec9a225859d093eca16146b100d7297d81f6bf1db078c44e815ba8876bdadd779232863fe9a52c82' +
+        'd4ea03c366eb93269dc344276317'
 
     function Publish-BB {
         [CmdletBinding()]
@@ -53,8 +54,6 @@ if(Test-Path $dll) {
     }
 
     New-Alias pbimg Publish-BB -Force
-
     Export-ModuleMember 'Publish-BB'
     Export-ModuleMember -Alias 'pbimg'
-
 }
