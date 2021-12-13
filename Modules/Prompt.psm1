@@ -9,8 +9,15 @@ function Prompt {
         $cp = '~' + $cp.Substring($HOME.Length)
     }
 
+    if( $cp -ne '~') {
+        $host.UI.RawUI.WindowTitle = $cp | Split-Path -Leaf
+    }
+    else {
+        $host.UI.RawUI.WindowTitle = $cp
+    }
+
     return "PS " + `
-        "$esc[92m" + "$env:USERNAME" + "@" + "$env:COMPUTERNAME" + ":" + `
+        # "$esc[92m" + "$env:USERNAME" + "@" + "$env:COMPUTERNAME" + ":" + `
         "$esc[34m" + "$cp" + `
         "$esc[37m" + "$ "
 }
