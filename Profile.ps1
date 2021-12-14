@@ -2,8 +2,8 @@
 # PowerShell profile script
 #
 
-# posh-git should be loaded manually
 Import-Module posh-git
+Import-Module DockerCompletion
 
 # custom modules
 Get-ChildItem "$PSScriptRoot\Modules" -Filter *.psm1 |

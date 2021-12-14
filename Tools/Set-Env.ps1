@@ -1,8 +1,11 @@
-$MachinePath = '%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem'
+$MachinePath = 
+    '%SystemRoot%\System32;' + `
+    '%SystemRoot%;' + `
+    '%SystemRoot%\System32\Wbem'
 
-$UserPath = '%ProgramFiles%\dotnet;%USERPROFILE%\.dotnet\tools;%ProgramFiles%\Git\cmd;' + `
-    '%ProgramFiles%\nodejs;.\node_modules\.bin;%APPDATA%\npm;' + `
-    '%USERPROFILE%\Programs\SqlLite'
+$UserPath = `
+    '%ProgramFiles%\dotnet;' + `
+    '%ProgramFiles%\Git\cmd;'
 
 setx /M PATH $MachinePath
 setx PATH $UserPath

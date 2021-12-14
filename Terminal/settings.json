@@ -1,13 +1,7 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    // Add custom actions and keybindings to this array.
-    // To unbind a key combination from your defaults.json, set the command to "unbound".
-    // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
     "actions": 
     [
-        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
-        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
-        // To learn more about selection, visit https://aka.ms/terminal-selection
         {
             "command": 
             {
@@ -32,15 +26,10 @@
             },
             "keys": "ctrl+insert"
         },
-        // Press Ctrl+Shift+F to open the search box
         {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
-        // Press Alt+Shift+D to open a new pane.
-        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-        // To learn more about panes, visit https://aka.ms/terminal-panes
         {
             "command": 
             {
@@ -53,7 +42,7 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{930d359e-a4fd-4a3f-a67d-9a1b1727e705}",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "initialCols": 160,
     "initialRows": 50,
     "profiles": 
@@ -64,17 +53,20 @@
             "backgroundImageOpacity": 0.16,
             "backgroundImageStretchMode": "none",
             "colorScheme": "One Half Dark",
-            "fontSize": 11
+            "font": 
+            {
+                "size": 11
+            }
         },
         "list": 
         [
             {
-                "backgroundImage": "ms-appdata:///Local/PwsCore-Logo.png",
-                "commandline": "%ProgramFiles%\\PowerShell\\7\\pwsh.exe -NoLogo",
-                "guid": "{930d359e-a4fd-4a3f-a67d-9a1b1727e705}",
-                "icon": "ms-appdata:///Local/PwsCore-Icon.png",
-                "name": "PowerShell",
-                "startingDirectory": "%USERPROFILE%"
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShaell",
+                "source": "Windows.Terminal.PowershellCore",
+                "tabTitle": "PowerShell"
             },
             {
                 "backgroundImage": "ms-appdata:///Local/Ubuntu-Logo.png",
@@ -86,20 +78,12 @@
                 "tabTitle": "Asgard"
             },
             {
-                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "hidden": true
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": true
-            },
-            {
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true
-            },
-            {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": true
+                "commandline": "wsl.exe -d Ubuntu",
+                "guid": "{d860167a-ee85-41a5-841d-9238adbd3025}",
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "name": "Ubuntu ",
+                "startingDirectory": "%USERPROFILE%",
+                "tabTitle": "WSL2"
             }
         ]
     },

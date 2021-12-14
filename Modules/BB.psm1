@@ -1,4 +1,4 @@
-$dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.17\System.Windows.Forms.dll"
+$dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.18\System.Windows.Forms.dll"
 
 if(Test-Path $dll) {
     [System.Reflection.Assembly]::LoadFrom($dll)

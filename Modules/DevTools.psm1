@@ -19,7 +19,7 @@ function Start-VisualStudio {
         $Path)
 
     begin {
-        $vs = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
+        $vs = "${env:ProgramFiles}\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe"
 
         if(-not $Path) {
             $Path = (Get-ChildItem -Filter *.sln)
