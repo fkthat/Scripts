@@ -13,7 +13,9 @@ if($UserPath) {
     setx PATH $UserPath
 }
 else {
-    Remove-ItemProperty 'HKCU:\Environment' -Name 'PATH'
+    if((Get-Item HKCU:\Environment\).GetValue('PATH')) {
+        Remove-ItemProperty 'HKCU:\Environment' -Name 'PATH'
+    }
 }
 
 setx VBOX_USER_HOME "$env:USERPROFILE\VirtualBox\Config"
