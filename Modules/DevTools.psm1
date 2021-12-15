@@ -60,14 +60,17 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 New-Alias clgit Clear-Git -Force
 New-Alias vs Start-VisualStudio -Force
 New-Alias code Start-VSCode -Force
+
+New-Alias dotnet "${env:ProgramFiles}\dotnet\dotnet.exe" -Force
 New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
 New-Alias azds "${env:ProgramFiles}\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias docker "${env:ProgramFiles}\Docker\Docker\resources\bin\docker.exe" -Force
+New-Alias minikube "${env:ProgramFiles}\Kubernetes\Minikube\minikube.exe" -Force
+New-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE" -Force
+
 New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -Force
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
 New-Alias dotnet-core-uninstall "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -Force
-New-Alias minikube "${env:ProgramFiles}\Kubernetes\Minikube\minikube.exe" -Force
-New-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE" -Force
 New-Alias sqlite3 "${env:LocalAppData}\Programs\Sqlite\sqlite3.exe" -Force
 New-Alias nuget "${env:LocalAppData}\Programs\NuGet\nuget.exe" -Force
 
