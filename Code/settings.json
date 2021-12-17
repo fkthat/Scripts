@@ -13,7 +13,7 @@
         "_vimrc": "vimrc",
         "README": "markdown"
     },
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Monokai Dimmed",
     "editor.rulers": [
         100
     ],
