@@ -52,7 +52,7 @@
             "backgroundImageAlignment": "bottomRight",
             "backgroundImageOpacity": 0.16,
             "backgroundImageStretchMode": "none",
-            "colorScheme": "Campbell",
+            "colorScheme": "Monokai Pro",
             "font":
             {
                 "size": 11
@@ -279,6 +279,52 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
+        },
+        {
+            "name": "Tomorrow Night Eighties",
+            "black": "#000000",
+            "red": "#f2777a",
+            "green": "#99cc99",
+            "yellow": "#ffcc66",
+            "blue": "#6699cc",
+            "purple": "#cc99cc",
+            "cyan": "#66cccc",
+            "white": "#ffffff",
+            "brightBlack": "#000000",
+            "brightRed": "#f2777a",
+            "brightGreen": "#99cc99",
+            "brightYellow": "#ffcc66",
+            "brightBlue": "#6699cc",
+            "brightPurple": "#cc99cc",
+            "brightCyan": "#66cccc",
+            "brightWhite": "#ffffff",
+            "background": "#2d2d2d",
+            "foreground": "#cccccc",
+            "selectionBackground": "#515151",
+            "cursorColor": "#cccccc"
+        },
+        {
+            "name": "Monokai Pro",
+            "black": "#3B3C35",
+            "red": "#F92672",
+            "green": "#A6E22E",
+            "yellow": "#E6DB74",
+            "blue": "#FD971F",
+            "purple": "#AE81FF",
+            "cyan": "#66D9EF",
+            "white": "#FDFFF1",
+            "brightBlack": "#6E7066",
+            "brightRed": "#F92672",
+            "brightGreen": "#A6E22E",
+            "brightYellow": "#E6DB74",
+            "brightBlue": "#FD971F",
+            "brightPurple": "#AE81FF",
+            "brightCyan": "#66D9EF",
+            "brightWhite": "#FDFFF1",
+            "background": "#3B3C35",
+            "foreground": "#FDFFF1",
+            "selectionBackground": "#FDFFF1",
+            "cursorColor": "#FDFFF1"
         }
     ]
 }
