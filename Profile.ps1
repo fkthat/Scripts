@@ -2,8 +2,6 @@
 # PowerShell profile script
 #
 
-# This sould be before posh-git loading
-New-Alias git "${env:ProgramFiles}\Git\bin\git.exe" -Force
 Import-Module posh-git
 Import-Module DockerCompletion
 

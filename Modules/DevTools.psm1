@@ -61,7 +61,6 @@ New-Alias clgit Clear-Git -Force
 New-Alias vs Start-VisualStudio -Force
 New-Alias code Start-VSCode -Force
 
-New-Alias dotnet "${env:ProgramFiles}\dotnet\dotnet.exe" -Force
 New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
 New-Alias azds "${env:ProgramFiles}\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias docker "${env:ProgramFiles}\Docker\Docker\resources\bin\docker.exe" -Force
