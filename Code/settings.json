@@ -44,6 +44,8 @@
         "Git Bash": null,
         "JavaScript Debug Terminal": null
     },
+    "powershell.integratedConsole.showOnStartup": false,
+    "powershell.integratedConsole.suppressStartupBanner": true,
     "mssql.connections": [],
     "[html]": {
         "editor.suggest.insertMode": "replace",
