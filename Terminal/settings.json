@@ -68,6 +68,11 @@
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore",
                 "tabTitle": "PowerShell"
+            },
+            {
+                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+                "name": "Ubuntu-20.04",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },

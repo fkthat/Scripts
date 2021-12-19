@@ -86,7 +86,9 @@ function Get-Diff {
     & "${env:ProgramFiles}\Git\usr\bin\diff.exe" -rcs --color=always $Path1 $Path2
 }
 
-# Edit etc/hosts file
+#
+# Open etc/hosts file in vi editor
+#
 
 function Edit-Hosts {
     vi "${env:SystemRoot}\System32\drivers\etc\hosts"
@@ -131,6 +133,10 @@ function sed {
      }
 }
 
+#
+# Environment tools
+#
+
 function Set-EnvironmentVariable {
     [CmdletBinding()]
     param (
@@ -157,7 +163,7 @@ function Set-EnvironmentVariable {
         Default {}
     }
 
-    Set-ItemProperty $reg -Name $Name -Value $Value
+    Set-ItemProperty $reg -Name $Name -Value $Value -Type $Type
 }
 
 function Remove-EnvironmentVariable {
@@ -193,10 +199,16 @@ function Reset-EnvironmentVariables {
 
     Set-EnvironmentVariable 'PATH' `
         -Value '%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem' `
-        -Scope Machine
+        -Scope Machine -Type ExpandString
 
-    Remove-EnvironmentVariable 'PATH' -Scope User
+    Set-EnvironmentVariable 'PATH' `
+        -Value '%ProgramFiles%\dotnet;%ProgramFiles%\Git\bin' `
+        -Scope User -Type ExpandString
 }
+
+#
+# Creates self-signed certificates for development
+#
 
 function New-DevelopmentCertificates {
     $ca = 'FkThat Development CA'
@@ -236,10 +248,3 @@ function New-DevelopmentCertificates {
     $secure = (ConvertTo-SecureString $password)
     Export-PfxCertificate $cert "${domain}.pfx" -Password $secure -Force | Out-Null
 }
-
-# aliases
-New-Alias gdiff Get-Diff -Force
-New-Alias ln New-ItemLink -Force
-New-Alias touch Set-ItemDateTime -Force
-New-Alias su Start-AdminTerminal -Force
-New-Alias gdi Get-DiskInfo -Force

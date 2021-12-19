@@ -1,6 +1,8 @@
+#
 # Search WEB
+#
 
-function Get-SearchEngine {
+function Get-EdgeSearchEngine {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
@@ -14,44 +16,37 @@ function Get-SearchEngine {
     try {
         $q = 'select keyword, url from keywords where is_active = 1'
         Invoke-SqliteQuery $q -Database $tempWebData |
-            Where-Object { -not $Keyword -or $_ -eq $Keyword }
+            Where-Object { -not $Keyword -or $_.keyword -eq $Keyword }
     }
     finally {
         Remove-Item $tempWebData
     }
 }
 
-class SearchEngineKeyword : System.Management.Automation.IValidateSetValuesGenerator {
-     [String[]] GetValidValues() {
-        return (Get-SearchEngine | Select-Object -ExpandProperty keyword)
-     }
- }
-
 function Search-Web {
 	[CmdletBinding()]
     param (
-        [Parameter(Mandatory = $true, Position = 0)]
-        [ValidateSet([SearchEngineKeyword])]
-        [string]
-        $Engine,
-        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true, ValueFromPipeline = $true)]
         [string[]]
         $Terms
     )
 
-    $url = Get-SearchEngine |
-        Where-Object keyword -eq $Engine |
+    $engines = Get-EdgeSearchEngine
+
+    $url = $engines | `
+        Where-Object keyword -eq $Terms[0] | `
         Select-Object -ExpandProperty url
 
+    if($url) {
+        $Terms = $Terms[1..($Terms.Length - 1)]
+    }
+    else {
+        $url = $engines | `
+            Where-Object keyword -eq 'b' | `
+            Select-Object -ExpandProperty url
+    }
+
     $t = ($Terms | Join-String -Separator ' ')
-
-    $url = $url -replace '/\{searchTerms\}',('/' + [System.Uri]::EscapeUriString($t)) `
-        -replace '=\{searchTerms\}',('=' + [System.Uri]::EscapeDataString($t))
-
+    $url = $url -replace '{searchTerms}',([System.Uri]::EscapeDataString($t))
     Start-Process $url
 }
-
-New-Alias srweb Search-Web -Force
-
-Export-ModuleMember -Function Search-Web, Get-SearchEngine
-Export-ModuleMember -Alias srweb

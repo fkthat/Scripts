@@ -5,13 +5,13 @@ $vbman = "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe"
 function Get-VM {
     $rex = '"(.*)"\s+(\{[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}\})$'
 
-    $running = (vbman list runningvms | ForEach-Object {
+    $running = (& $vbman list runningvms | ForEach-Object {
        if($_ -match $rex) {
             $matches[2]
        }
     })
 
-    vbman list vms | ForEach-Object {
+    & $vbman list vms | ForEach-Object {
        if($_ -match $rex) {
             [PSCustomObject]@{
                 Id = $matches[2];
@@ -86,8 +86,3 @@ function Compress-VMDisk {
         }
     }
 }
-
-New-Alias vbman "$vbman" -Force
-New-Alias gvm Get-VM -Force
-New-Alias savm Start-VM -Force
-New-Alias spvm Stop-VM -Force

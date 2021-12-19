@@ -1,6 +1,13 @@
-$dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.18\System.Windows.Forms.dll"
 
-if(Test-Path $dll) {
+function Publish-BB {
+    [CmdletBinding()]
+    param (
+        [Parameter()]
+        [float]
+        $Scale = 67 # to 67% (i.e. 1.5 as smaller)
+    )
+
+    $dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.18\System.Windows.Forms.dll"
     [System.Reflection.Assembly]::LoadFrom($dll)
 
     $ApiKey = `
@@ -13,47 +20,34 @@ if(Test-Path $dll) {
         'ec9a225859d093eca16146b100d7297d81f6bf1db078c44e815ba8876bdadd779232863fe9a52c82' +
         'd4ea03c366eb93269dc344276317'
 
-    function Publish-BB {
-        [CmdletBinding()]
-        param (
-            [Parameter()]
-            [float]
-            $Scale = 67 # to 67% (i.e. 1.5 as smaller)
-        )
+    $secret = ConvertTo-SecureString $ApiKey
+    $secret = ConvertFrom-SecureString $secret -AsPlainText
+    $Url = "https://api.imgbb.com/1/upload?key=$secret"
 
-        $secret = ConvertTo-SecureString $ApiKey
-        $secret = ConvertFrom-SecureString $secret -AsPlainText
-        $Url = "https://api.imgbb.com/1/upload?key=$secret"
+    $Img = [System.Windows.Forms.Clipboard]::GetImage()
 
-        $Img = [System.Windows.Forms.Clipboard]::GetImage()
+    if ($Img) {
+        try {
+            [int] $W = $Img.Width * $Scale / 100
+            [int] $H = $Img.Height * $Scale / 100
+            $Scaled = New-Object 'System.Drawing.Bitmap' $Img, $W, $H
 
-        if ($Img) {
             try {
-                [int] $W = $Img.Width * $Scale / 100
-                [int] $H = $Img.Height * $Scale / 100
-                $Scaled = New-Object 'System.Drawing.Bitmap' $Img, $W, $H
+                $Buf = New-Object 'System.IO.MemoryStream'
+                $Scaled.Save($Buf, [System.Drawing.Imaging.ImageFormat]::Png)
+                $B64 = [System.Convert]::ToBase64String($Buf.ToArray())
 
-                try {
-                    $Buf = New-Object 'System.IO.MemoryStream'
-                    $Scaled.Save($Buf, [System.Drawing.Imaging.ImageFormat]::Png)
-                    $B64 = [System.Convert]::ToBase64String($Buf.ToArray())
+                $Json = Invoke-WebRequest $Url -Method POST -Form @{ image = $B64 } |
+                ConvertFrom-Json
 
-                    $Json = Invoke-WebRequest $Url -Method POST -Form @{ image = $B64 } |
-                    ConvertFrom-Json
-
-                    Write-Output $Json.data.url
-                }
-                finally {
-                    $Scaled.Dispose()
-                }
+                Write-Output $Json.data.url
             }
             finally {
-                $Img.Dispose()
+                $Scaled.Dispose()
             }
         }
+        finally {
+            $Img.Dispose()
+        }
     }
-
-    New-Alias pbimg Publish-BB -Force
-    Export-ModuleMember 'Publish-BB'
-    Export-ModuleMember -Alias 'pbimg'
 }

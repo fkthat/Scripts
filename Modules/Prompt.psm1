@@ -1,4 +1,6 @@
-# Custom Prompt
+#
+# Custom PowerShell Prompt
+#
 
 function Test-Elevated() {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
