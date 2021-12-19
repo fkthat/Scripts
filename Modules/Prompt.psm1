@@ -1,5 +1,11 @@
 # Custom Prompt
 
+function Test-Elevated() {
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal $identity
+    Write-Output $principal.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+}
+
 function Prompt {
     $esc = [char]27;
 
@@ -16,8 +22,11 @@ function Prompt {
         $host.UI.RawUI.WindowTitle = $cp
     }
 
-    return "PS " + `
-        # "$esc[92m" + "$env:USERNAME" + "@" + "$env:COMPUTERNAME" + ":" + `
-        "$esc[34m" + "$cp" + `
-        "$esc[37m" + "$ "
+    if(Test-Elevated) {
+        $user = "$esc[31mADMIN@$env:COMPUTERNAME"
+    } else {
+        $user ="$esc[92m$env:USERNAME@$env:COMPUTERNAME"
+    }
+
+    return "PS ${user}:$esc[34m$cp$esc[37m`$ "
 }
