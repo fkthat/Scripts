@@ -3,23 +3,33 @@
         {
             "name": "ROOT",
             "id": "C777F06B-202E-4480-B475-FA416154D458"
+        },
+        {
+            "name": "ft",
+            "id": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
+            "parentId": "C777F06B-202E-4480-B475-FA416154D458",
+            "color": "#515151",
+            "description": ""
         }
     ],
     "datasource.connections": [
         {
             "options": {
-                "connectionName": "",
-                "server": "asgard.home.arpa",
-                "database": "",
+                "connectionName": "SQL",
+                "server": "ft.wsl.home.arpa",
+                "database": "master",
                 "authenticationType": "SqlLogin",
+                "user": "sa",
+                "password": "",
                 "applicationName": "azdata",
-                "groupId": "C777F06B-202E-4480-B475-FA416154D458",
-                "databaseDisplayName": ""
+                "originalDatabase": "master",
+                "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
+                "databaseDisplayName": "master"
             },
-            "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+            "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
             "providerName": "MSSQL",
             "savePassword": true,
-            "id": "f237ee1e-ec60-452e-b9da-fff7d2210e3a"
+            "id": "15e211d3-25ca-406a-8fad-520036c3f03d"
         }
     ],
     "workbench.enablePreviewFeatures": true,
