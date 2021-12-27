@@ -248,3 +248,9 @@ function New-DevelopmentCertificates {
     $secure = (ConvertTo-SecureString $password)
     Export-PfxCertificate $cert "${domain}.pfx" -Password $secure -Force | Out-Null
 }
+
+function Reset-WinTray {
+    Remove-ItemProperty `
+        'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify\' `
+        -Name 'IconStreams','PastIconsStream'
+}
