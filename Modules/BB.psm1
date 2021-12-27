@@ -4,11 +4,11 @@ function Publish-BB {
     param (
         [Parameter()]
         [float]
-        $Scale = 67 # to 67% (i.e. 1.5 as smaller)
+        $Scale = 50 # to 50% (i.e. 2 as smaller)
     )
 
-    $dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.18\System.Windows.Forms.dll"
-    [System.Reflection.Assembly]::LoadFrom($dll)
+    $dll = "${env:ProgramFiles}\dotnet\shared\Microsoft.WindowsDesktop.App\3.1.14\System.Windows.Forms.dll"
+    [System.Reflection.Assembly]::LoadFrom($dll) | Out-Null
 
     $ApiKey = `
         '01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4b16b938aa09249a4cb328c9969b496' +
