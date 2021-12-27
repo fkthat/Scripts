@@ -1,0 +1,97 @@
+version: '3.9'
+
+services:
+
+  sql:
+    image: mcr.microsoft.com/mssql/server:latest
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
+    ports:
+      - '${DOCKER_IP}:1433:1433'
+    volumes:
+      - 'sql:/var/opt/mssql'
+    secrets:
+      - sql_password
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - '${DOCKER_IP}:27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_login
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
+    volumes:
+      - 'mongo:/data'
+    secrets:
+      - mongo_login
+      - mongo_password
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    ports:
+      - '${DOCKER_IP}:5432:5432'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    secrets:
+      - postgres_password
+
+  pgadmin:
+    restart: always
+    build:
+      context: ./pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL_FILE: /run/secrets/pgadmin_email
+      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pgadmin_password
+    ports:
+      - '${DOCKER_IP}:5050:80'
+    volumes:
+      - 'pgadmin:/var/lib/pgadmin'
+    secrets:
+      - pgadmin_email
+      - pgadmin_password
+
+  smtp4dev:
+    image: rnwood/smtp4dev:latest
+    restart: always
+    ports:
+      - '${DOCKER_IP}:25:25'
+    volumes:
+      - 'smtp4dev:/smtp4dev'
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - '${DOCKER_IP}:80:80'
+      - '${DOCKER_IP}:443:443'
+    volumes:
+      - 'nginx:/etc/nginx'
+
+volumes:
+  mongo:
+  sql:
+  postgres:
+  pgadmin:
+  smtp4dev:
+  nginx:
+
+secrets:
+  sql_password:
+    file: ./secrets/sql/password.txt
+  mongo_login:
+    file: ./secrets/mongo/login.txt
+  mongo_password:
+    file: ./secrets/mongo/password.txt
+  postgres_password:
+    file: ./secrets/postgres/password.txt
+  pgadmin_email:
+    file: ./secrets/pgadmin/email.txt
+  pgadmin_password:
+    file: ./secrets/pgadmin/password.txt
+
