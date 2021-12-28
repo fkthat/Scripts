@@ -254,3 +254,23 @@ function Reset-WinTray {
         'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify\' `
         -Name 'IconStreams','PastIconsStream'
 }
+
+function Split-Text {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+        [string]
+        $Text,
+        [Parameter(Mandatory = $false, Position = 1)]
+        [int]
+        $MaxLength = 80
+    )
+
+    process {
+        0..($Text.Length / $MaxLength) |
+            ForEach-Object {
+                $i = $_ * $MaxLength
+                $Text.Substring($i, [Math]::Min($Text.Length - $i, $MaxLength))
+            }
+    }
+}
