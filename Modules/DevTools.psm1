@@ -94,3 +94,32 @@ function Get-TestData {
     Get-Content $f | ConvertFrom-Json
     Remove-Item $f
 }
+
+function Get-RandomDateTime {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position = 0, Mandatory = $false)]
+        [datetime]
+        $Min = [datetime]::MinValue,
+        [Parameter(Position = 1, Mandatory = $false)]
+        [datetime]
+        $Max = [datetime]::MaxValue,
+        [Parameter(Mandatory = $false)]
+        [ValidateSet('none', 'json', 'csharp')]
+        $Format = 'none'
+    )
+
+    $dt = New-Object datetime ([Random]::Shared.NextInt64($Min.Ticks, $Max.Ticks))
+
+    switch($Format) {
+        'none' {
+            $dt
+        }
+        'json' {
+            ConvertTo-Json $dt
+        }
+        'csharp' {
+            [string]::Format("new DateTime({0:yyyy, MM, dd, hh, mm, ss})", $dt)
+        }
+    }
+}
