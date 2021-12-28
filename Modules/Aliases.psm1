@@ -2,7 +2,6 @@ New-Alias scp "${env:SystemRoot}\System32\OpenSSH\scp.exe" -Force
 New-Alias ssh "${env:SystemRoot}\System32\OpenSSH\ssh.exe" -Force
 
 New-Alias 7z "${env:ProgramFiles}\7-zip\7z.exe" -Force
-New-Alias azds "${env:ProgramFiles}\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias bash "${env:ProgramFiles}\Git\bin\bash.exe" -Force
 New-Alias docker "${env:ProgramFiles}\Docker\Docker\resources\bin\docker.exe" -Force
 New-Alias less "${env:ProgramFiles}\Git\usr\bin\less.exe" -Force
@@ -14,6 +13,7 @@ New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -F
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
 New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
 
+New-Alias azds "${env:LocalAppData}\Programs\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias dos2unix "${env:LocalAppData}\Programs\dos2unix\dos2unix.exe" -Force
 New-Alias dtui "${env:LocalAppData}\Programs\dt1.8.3\drop\dtui.exe" -Force
 New-Alias ffmpeg "${env:LocalAppData}\Programs\ffmpeg\bin\ffmpeg.exe" -Force
@@ -53,7 +53,6 @@ New-Alias pbimg Publish-BB -Force
 # Search
 #
 
-New-Alias srbing Search-Bing -Force
 New-Alias srweb Search-Web -Force
 
 #
