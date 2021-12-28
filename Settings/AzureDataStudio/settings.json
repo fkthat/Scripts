@@ -10,6 +10,13 @@
             "parentId": "C777F06B-202E-4480-B475-FA416154D458",
             "color": "#515151",
             "description": ""
+        },
+        {
+            "name": "qugo",
+            "id": "35008813-9928-41d6-ab88-9cb8d7d57def",
+            "parentId": "C777F06B-202E-4480-B475-FA416154D458",
+            "color": "#515151",
+            "description": ""
         }
     ],
     "datasource.connections": [
