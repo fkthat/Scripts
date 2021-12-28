@@ -26,6 +26,12 @@ New-Alias vim "${env:LocalAppData}\Programs\vim\vim82\vim.exe" -Force
 New-Alias winget "${env:LocalAppData}\Microsoft\WindowsApps\winget.exe" -Force
 
 #
+# PWSH
+#
+
+New-Alias help Get-Help -Force
+
+#
 # SysTools
 #
 
