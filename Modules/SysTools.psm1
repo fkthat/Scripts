@@ -202,7 +202,7 @@ function Reset-EnvironmentVariables {
         -Scope Machine -Type ExpandString
 
     Set-EnvironmentVariable 'PATH' `
-        -Value '%ProgramFiles%\dotnet;%ProgramFiles%\Git\bin' `
+        -Value '%ProgramFiles%\dotnet;%ProgramFiles%\Git\bin;%USERPROFILE%\.dotnet\tools' `
         -Scope User -Type ExpandString
 }
 
