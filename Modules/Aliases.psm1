@@ -40,6 +40,7 @@ New-Alias gdiff Get-Diff -Force
 New-Alias ln New-ItemLink -Force
 New-Alias su Start-AdminTerminal -Force
 New-Alias touch Set-ItemDateTime -Force
+New-Alias sed Edit-FileContent -Force
 
 #
 # DevTools

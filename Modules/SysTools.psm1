@@ -102,37 +102,6 @@ function Start-AdminTerminal {
     Start-Process $term -Verb RunAs
 }
 
-# 'sed'
-
-function sed {
-    [CmdletBinding()]
-     param (
-        [Parameter(Position = 0, ValueFromPipeline = $true)]
-        [string[]]
-        $Path,
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Pattern,
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Replace
-     )
-
-     process {
-        $Path |
-            ForEach-Object {
-                $file = $_
-
-                $s = Get-Content $file |
-                    ForEach-Object {
-                        $_ -replace $Pattern, $Replace
-                    } | Join-String -Separator ([System.Environment]::NewLine)
-
-                $s > $file
-            }
-     }
-}
-
 #
 # Environment tools
 #
@@ -272,5 +241,34 @@ function Split-Text {
                 $i = $_ * $MaxLength
                 $Text.Substring($i, [Math]::Min($Text.Length - $i, $MaxLength))
             }
+    }
+}
+
+function Edit-FileContent {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
+        [string[]]
+        $Path,
+        [Parameter(Position = 1, Mandatory = $true)]
+        [scriptblock]
+        $Process,
+        [Parameter(Mandatory = $false)]
+        [scriptblock]
+        $Begin = {},
+        [Parameter(Mandatory = $false)]
+        [scriptblock]
+        $End = {}
+    )
+
+    process {
+        $Path | ForEach-Object {
+            $tmp = New-TemporaryFile
+            Get-Content $_ |
+                ForEach-Object -Begin $Begin -Process $Process -End $End |
+                Out-File $tmp
+            Copy-Item $tmp $_
+            Remove-Item $tmp
+        }
     }
 }
