@@ -9,7 +9,7 @@ services:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
     ports:
-      - '${DOCKER_IP}:1433:1433'
+      - '1433:1433'
     volumes:
       - 'sql:/var/opt/mssql'
     secrets:
@@ -19,7 +19,7 @@ services:
     image: mongo:latest
     restart: always
     ports:
-      - '${DOCKER_IP}:27017:27017'
+      - '27017:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_login
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
@@ -35,7 +35,7 @@ services:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
     ports:
-      - '${DOCKER_IP}:5432:5432'
+      - '5432:5432'
     volumes:
       - 'postgres:/var/lib/postgresql/data'
     secrets:
@@ -49,7 +49,7 @@ services:
       PGADMIN_DEFAULT_EMAIL_FILE: /run/secrets/pgadmin_email
       PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pgadmin_password
     ports:
-      - '${DOCKER_IP}:5050:80'
+      - '5050:80'
     volumes:
       - 'pgadmin:/var/lib/pgadmin'
     secrets:
@@ -60,7 +60,9 @@ services:
     image: rnwood/smtp4dev:latest
     restart: always
     ports:
-      - '${DOCKER_IP}:25:25'
+      - '25:25'
+      - '143:143'
+      - '8080:80'
     volumes:
       - 'smtp4dev:/smtp4dev'
 
@@ -68,8 +70,8 @@ services:
     image: nginx:latest
     restart: always
     ports:
-      - '${DOCKER_IP}:80:80'
-      - '${DOCKER_IP}:443:443'
+      - '80:80'
+      - '443:443'
     volumes:
       - 'nginx:/etc/nginx'
 
@@ -83,15 +85,15 @@ volumes:
 
 secrets:
   sql_password:
-    file: ./secrets/sql/password.txt
+    file: ./secrets/sql_password.txt
   mongo_login:
-    file: ./secrets/mongo/login.txt
+    file: ./secrets/mongo_login.txt
   mongo_password:
-    file: ./secrets/mongo/password.txt
+    file: ./secrets/mongo_password.txt
   postgres_password:
-    file: ./secrets/postgres/password.txt
+    file: ./secrets/postgres_password.txt
   pgadmin_email:
-    file: ./secrets/pgadmin/email.txt
+    file: ./secrets/pgadmin_email.txt
   pgadmin_password:
-    file: ./secrets/pgadmin/password.txt
+    file: ./secrets/pgadmin_password.txt
 
