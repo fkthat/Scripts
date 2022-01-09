@@ -61,6 +61,8 @@ services:
     restart: always
     ports:
       - '25:25'
+      - '143:143'
+      - '8080:80'
     volumes:
       - 'smtp4dev:/smtp4dev'
 
@@ -83,15 +85,15 @@ volumes:
 
 secrets:
   sql_password:
-    file: ./secrets/sql/password.txt
+    file: ./secrets/sql_password.txt
   mongo_login:
-    file: ./secrets/mongo/login.txt
+    file: ./secrets/mongo_login.txt
   mongo_password:
-    file: ./secrets/mongo/password.txt
+    file: ./secrets/mongo_password.txt
   postgres_password:
-    file: ./secrets/postgres/password.txt
+    file: ./secrets/postgres_password.txt
   pgadmin_email:
-    file: ./secrets/pgadmin/email.txt
+    file: ./secrets/pgadmin_email.txt
   pgadmin_password:
-    file: ./secrets/pgadmin/password.txt
+    file: ./secrets/pgadmin_password.txt
 
