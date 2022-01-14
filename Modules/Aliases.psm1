@@ -34,24 +34,3 @@ New-Alias help Get-Help -Force
 #
 # SysTools
 #
-
-New-Alias gdi Get-DiskInfo -Force
-New-Alias gdiff Get-Diff -Force
-New-Alias ln New-ItemLink -Force
-New-Alias su Start-AdminTerminal -Force
-New-Alias touch Set-ItemDateTime -Force
-New-Alias sed Edit-FileContent -Force
-New-Alias pbimg Publish-BB -Force
-
-#
-# DevTools
-#
-
-New-Alias clgit Clear-Git -Force
-New-Alias code Start-VSCode -Force
-New-Alias vs Start-VisualStudio -Force
-New-Alias cover New-CoverageReport -Force
-
-#
-# Search
-#
