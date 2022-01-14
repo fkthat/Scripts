@@ -5,15 +5,8 @@
             "id": "C777F06B-202E-4480-B475-FA416154D458"
         },
         {
-            "name": "ft",
+            "name": "wsl",
             "id": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-            "parentId": "C777F06B-202E-4480-B475-FA416154D458",
-            "color": "#515151",
-            "description": ""
-        },
-        {
-            "name": "qugo",
-            "id": "35008813-9928-41d6-ab88-9cb8d7d57def",
             "parentId": "C777F06B-202E-4480-B475-FA416154D458",
             "color": "#515151",
             "description": ""
@@ -23,7 +16,7 @@
         {
             "options": {
                 "connectionName": "SQL",
-                "server": "ft.wsl.home.arpa",
+                "server": "localhost",
                 "database": "master",
                 "authenticationType": "SqlLogin",
                 "user": "sa",
@@ -41,16 +34,16 @@
         {
             "options": {
                 "connectionName": "PG",
-                "host": "qugo.wsl.home.arpa",
+                "host": "localhost",
                 "authenticationType": "SqlLogin",
                 "dbname": "",
                 "user": "postgres",
                 "password": "",
                 "applicationName": "azdata",
-                "groupId": "35008813-9928-41d6-ab88-9cb8d7d57def",
+                "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
                 "databaseDisplayName": ""
             },
-            "groupId": "35008813-9928-41d6-ab88-9cb8d7d57def",
+            "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
             "providerName": "PGSQL",
             "savePassword": true,
             "id": "aa83d0ec-07ed-4af2-bedc-1905b5f3afb7"

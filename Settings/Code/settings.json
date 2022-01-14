@@ -14,24 +14,22 @@
         "README": "markdown"
     },
     "workbench.colorTheme": "Monokai Dimmed",
-    "editor.rulers": [
-        100
-    ],
+    "editor.rulers": [ 80, 100 ],
     "auto-close-tag.disableOnLanguage": [
         "typescript"
     ],
     "files.trimTrailingWhitespace": true,
     "editor.cursorSurroundingLines": 3,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["Z", "A"],
-            "commands": [":wa"]
-        },
-        {
-            "before": ["Z", "S"],
-            "commands": [":w"]
-        }
-    ],
+//    "vim.normalModeKeyBindingsNonRecursive": [
+//        {
+//            "before": ["Z", "A"],
+//            "commands": [":wa"]
+//        },
+//        {
+//            "before": ["Z", "S"],
+//            "commands": [":w"]
+//        }
+//    ],
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
