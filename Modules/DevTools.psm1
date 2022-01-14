@@ -23,7 +23,8 @@ function Start-VisualStudio {
 
     process {
         $Path |
-            Select-Object { Get-ChildItem $_ -Filter *.sln } -Unique |
+            Get-ChildItem -Filter *.sln  |
+            Select-Object -Unique |
             Where-Object Extension -eq '.sln' |
             ForEach-Object { & $vs $_ }
     }
@@ -51,7 +52,8 @@ function Start-VSCode {
 
     process {
         $Path |
-            Select-Object { Get-Item $_ } -Unique |
+            Get-Item |
+            Select-Object -Unique |
             ForEach-Object { & $code $_ -n }
     }
 }
