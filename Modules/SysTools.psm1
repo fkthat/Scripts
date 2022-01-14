@@ -1,9 +1,14 @@
 # Disk size and free space info
 
+<#
+.SYNOPSIS
+Returns disk usage info.
+#>
 function Get-DiskInfo {
     [CmdletBinding()]
     param (
-        [Parameter(ValueFromPipeline = $true)] [string] $DiskId
+        [Parameter(ValueFromPipeline = $true)]
+        [string[]] $DiskId
     )
 
     begin {
@@ -17,6 +22,8 @@ function Get-DiskInfo {
             Select-Object DeviceId,$size,$free
     }
 }
+
+New-Alias gdi Get-DiskInfo -Force
 
 # Links
 
@@ -331,3 +338,10 @@ function Publish-BB {
         }
     }
 }
+
+New-Alias gdiff Get-Diff -Force
+New-Alias ln New-ItemLink -Force
+New-Alias su Start-AdminTerminal -Force
+New-Alias touch Set-ItemDateTime -Force
+New-Alias sed Edit-FileContent -Force
+New-Alias pbimg Publish-BB -Force
