@@ -1,39 +1,45 @@
-# Quick delete node_modules
+#
+# Development tools.
+#
 
-function Remove-NodeModules {
-    Get-ChildItem . -Recurse -Filter node_modules |
-        Remove-Item -Recurse -Force
-}
-
-# Git tools
-
-function Clear-Git {
-    Remove-NodeModules
-    git clean -dfx -e .vs -e .vscode
-}
-
+<#
+.SYNOPSIS
+Starts Visual Studio 2022.
+.DESCRIPTION
+Starts instance(s) of Visual Studio 2022 and opens the specified solutions or
+the solutions in the specified folders. If no paths provided then the current
+folder is used.
+#>
 function Start-VisualStudio {
     param(
-        [Parameter(ValueFromPipeline = $true)]
+        # Path to the solution or folder.
+        [Parameter(Position = 0, ValueFromPipeline = $true)]
         [string[]]
-        $Path)
+        $Path = '.')
 
     begin {
         $vs = "${env:ProgramFiles}\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe"
-
-        if(-not $Path) {
-            $Path = (Get-ChildItem -Filter *.sln)
-        }
     }
 
     process {
-        $Path | ForEach-Object { & $vs $_ }
+        $Path |
+            Select-Object { Get-ChildItem $_ -Filter *.sln } -Unique |
+            Where-Object Extension -eq '.sln' |
+            ForEach-Object { & $vs $_ }
     }
 }
 
+<#
+.SYNOPSIS
+Starts VSCode.
+.DESCRIPTION
+Starts instance(s) of VSCode and opens the specified files or folders. If no
+paths provided then the current folder is used.
+#>
 function Start-VSCode {
     param(
-        [Parameter(ValueFromPipeline = $true)]
+        # Path to the file or folder.
+        [Parameter(Position = 0, ValueFromPipeline = $true)]
         [string[]]
         $Path = '.')
 
@@ -42,10 +48,16 @@ function Start-VSCode {
     }
 
     process {
-        & $code $Path -n
+        $Path |
+            Select-Object { Get-Item $_ } -Unique |
+            ForEach-Object { & $code $_ -n }
     }
 }
 
+<#
+.SYNOPSIS
+Returns random test data from hit.ori.one.
+#>
 function Get-TestData {
     [CmdletBinding()]
     param (
@@ -95,6 +107,10 @@ function Get-TestData {
     Remove-Item $f
 }
 
+<#
+.SYNOPSIS
+Returns a random datetime in the specified format.
+#>
 function Get-RandomDateTime {
     [CmdletBinding()]
     param (
@@ -116,10 +132,65 @@ function Get-RandomDateTime {
             $dt
         }
         'json' {
-            ConvertTo-Json $dt
+            (ConvertTo-Json $dt).Trim('"')
         }
         'csharp' {
             [string]::Format("new DateTime({0:yyyy, MM, dd, hh, mm, ss})", $dt)
         }
+    }
+}
+
+<# function Get-GitDirtyFiles {
+    git ls-files -o --exclude-standard
+    git diff-index --name-only HEAD
+} #>
+
+<#
+.SYNOPSIS
+Returns a random temporary path.
+.OUTPUTS
+[string]
+#>
+function Get-TemporaryPath {
+    Join-Path ([System.IO.Path]::GetTempPath()) `
+        ([System.IO.Path]::GetRandomFileName())
+}
+
+<#
+.SYNOPSIS
+Creates a code coverage report.
+.DESCRIPTION
+Creates a new HTML code coverage report and returns the path to the HTML
+report file.
+.OUTPUTS
+[string]
+The path to the HTML file of the report.
+#>
+function New-CoverageReport {
+    [CmdletBinding()]
+    param (
+        # The path or glob to the report file.
+        # Default to the **\TestResults\coverage.cobertura.xml
+        [Parameter(Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Path = '**\TestResults\coverage.cobertura.xml',
+        # Output folder.
+        # Default to the generated temporary folder.
+        [Parameter(Mandatory = $false)]
+        [string]
+        $OutDir
+    )
+
+    begin {
+        if(-not $OutDir) {
+            $OutDir = Get-TemporaryPath
+        }
+    }
+
+    process {
+        $reports = Join-String $Path -Separator ';'
+
+        dotnet tool run reportgenerator -reports:$reports -targetdir:$OutDir &&
+            Join-Path $OutDir 'index.html'
     }
 }
