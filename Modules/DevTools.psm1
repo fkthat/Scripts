@@ -29,6 +29,8 @@ function Start-VisualStudio {
     }
 }
 
+New-Alias vs Start-VisualStudio
+
 <#
 .SYNOPSIS
 Starts VSCode.
@@ -53,6 +55,8 @@ function Start-VSCode {
             ForEach-Object { & $code $_ -n }
     }
 }
+
+New-Alias code Start-VSCode
 
 <#
 .SYNOPSIS
@@ -194,3 +198,5 @@ function New-CoverageReport {
             Join-Path $OutDir 'index.html'
     }
 }
+
+New-Alias cover New-CoverageReport

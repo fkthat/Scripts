@@ -50,3 +50,9 @@ function Search-Web {
     $url = $url -replace '{searchTerms}',([System.Uri]::EscapeDataString($t))
     Start-Process $url
 }
+
+#
+# Aliases
+#
+
+New-Alias srweb Search-Web -Force

@@ -86,3 +86,8 @@ function Compress-VMDisk {
         }
     }
 }
+
+New-Alias gvm Get-VM -Force
+New-Alias savm Start-VM -Force
+New-Alias spvm Stop-VM -Force
+New-Alias vbman  "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe" -Force

@@ -41,6 +41,7 @@ New-Alias ln New-ItemLink -Force
 New-Alias su Start-AdminTerminal -Force
 New-Alias touch Set-ItemDateTime -Force
 New-Alias sed Edit-FileContent -Force
+New-Alias pbimg Publish-BB -Force
 
 #
 # DevTools
@@ -49,24 +50,8 @@ New-Alias sed Edit-FileContent -Force
 New-Alias clgit Clear-Git -Force
 New-Alias code Start-VSCode -Force
 New-Alias vs Start-VisualStudio -Force
-
-#
-# BB
-#
-
-New-Alias pbimg Publish-BB -Force
+New-Alias cover New-CoverageReport -Force
 
 #
 # Search
 #
-
-New-Alias srweb Search-Web -Force
-
-#
-# VirtualBox
-#
-
-New-Alias gvm Get-VM -Force
-New-Alias savm Start-VM -Force
-New-Alias spvm Stop-VM -Force
-New-Alias vbman  "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe" -Force
