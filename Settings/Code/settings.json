@@ -14,28 +14,43 @@
         "README": "markdown"
     },
     "workbench.colorTheme": "Monokai Dimmed",
-    "editor.rulers": [ 80, 100 ],
+    "editor.rulers": [
+        80,
+        100
+    ],
     "auto-close-tag.disableOnLanguage": [
         "typescript"
     ],
     "files.trimTrailingWhitespace": true,
     "editor.cursorSurroundingLines": 3,
-//    "vim.normalModeKeyBindingsNonRecursive": [
-//        {
-//            "before": ["Z", "A"],
-//            "commands": [":wa"]
-//        },
-//        {
-//            "before": ["Z", "S"],
-//            "commands": [":w"]
-//        }
-//    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "Z",
+                "A"
+            ],
+            "commands": [
+                ":wa"
+            ]
+        },
+        {
+            "before": [
+                "Z",
+                "S"
+            ],
+            "commands": [
+                ":w"
+            ]
+        }
+    ],
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
             "overrideName": true,
             "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-            "args": ["-NoLogo"],
+            "args": [
+                "-NoLogo"
+            ],
             "icon": "terminal-powershell"
         },
         "Command Prompt": null,
@@ -49,5 +64,12 @@
         "editor.suggest.insertMode": "replace",
         "editor.detectIndentation": false,
         "editor.tabSize": 2
-    }
+    },
+    "[xml]": {
+        "editor.tabSize": 2
+    },
+    "[jsonc]": {
+        "editor.tabSize": 2
+    },
+    "files.insertFinalNewline": true
 }
