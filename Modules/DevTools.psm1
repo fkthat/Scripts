@@ -175,30 +175,94 @@ The path to the HTML file of the report.
 function New-CoverageReport {
     [CmdletBinding()]
     param (
-        # The path or glob to the report file.
-        # Default to the **\TestResults\coverage.cobertura.xml
+        # The path or glob to the report file. Default to **\coverage.*
         [Parameter(Position = 0, ValueFromPipeline = $true)]
         [string[]]
-        $Path = '**\TestResults\coverage.cobertura.xml',
-        # Output folder.
-        # Default to the generated temporary folder.
+        $Path = '**\coverage.*',
+        # Output folder. Default to the generated temporary folder.
         [Parameter(Mandatory = $false)]
         [string]
-        $OutDir
+        $OutDir = (Get-TemporaryPath)
     )
 
-    begin {
-        if(-not $OutDir) {
-            $OutDir = Get-TemporaryPath
-        }
-    }
-
     process {
-        $reports = Join-String $Path -Separator ';'
+        $reports = Join-String -InputObject $Path -Separator ';'
+        $log = reportgenerator -reports:$reports -targetdir:$OutDir
 
-        dotnet tool run reportgenerator -reports:$reports -targetdir:$OutDir &&
+        if($?) {
             Join-Path $OutDir 'index.html'
+        }
+        else {
+            Write-Host $log
+        }
     }
 }
 
 New-Alias cover New-CoverageReport
+
+$flow_main_branch = "develop"
+
+function Get-FlowCurrentBranch {
+    git branch --show-current
+
+    if(-not $?) {
+        Throw
+    }
+}
+
+function Update-FlowBranch() {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Name = (Get-FlowCurrentBranch)
+    )
+
+    begin {
+        $current = Get-FlowCurrentBranch
+    }
+
+    process {
+        $Name | ForEach-Object {
+            if($_ -eq $current) {
+                git pull
+            } else {
+                git fetch origin "${_}:${_}"
+            }
+
+            if(-not $?) {
+                Throw
+            }
+        }
+    }
+}
+
+function Start-FlowFeature {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Name,
+        [Parameter()]
+        [string]
+        $MainBranch = $flow_main_branch,
+        [Parameter()]
+        [switch]
+        $UpdateMain
+    )
+
+    begin {
+        if($UpdateMain) {
+            Update-FlowBranch $MainBranch
+        }
+    }
+
+    process {
+        $Name | ForEach-Object {
+            echo $_
+            git checkout $MainBranch -b $_ &&
+                git push -u origin $_ ||
+                &{ Throw }
+        }
+    }
+}
