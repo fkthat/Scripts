@@ -200,69 +200,16 @@ function New-CoverageReport {
 
 New-Alias cover New-CoverageReport
 
-$flow_main_branch = "develop"
-
-function Get-FlowCurrentBranch {
-    git branch --show-current
-
-    if(-not $?) {
-        Throw
-    }
-}
-
-function Update-FlowBranch() {
+function Start-Flow {
     [CmdletBinding()]
     param (
-        [Parameter(Position = 0, ValueFromPipeline = $true)]
-        [string[]]
-        $Name = (Get-FlowCurrentBranch)
-    )
-
-    begin {
-        $current = Get-FlowCurrentBranch
-    }
-
-    process {
-        $Name | ForEach-Object {
-            if($_ -eq $current) {
-                git pull
-            } else {
-                git fetch origin "${_}:${_}"
-            }
-
-            if(-not $?) {
-                Throw
-            }
-        }
-    }
-}
-
-function Start-FlowFeature {
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
-        [string[]]
-        $Name,
-        [Parameter()]
+        [Parameter(Mandatory = $true, Position = 0)]
         [string]
-        $MainBranch = $flow_main_branch,
-        [Parameter()]
-        [switch]
-        $UpdateMain
+        $Name
     )
 
-    begin {
-        if($UpdateMain) {
-            Update-FlowBranch $MainBranch
-        }
-    }
-
-    process {
-        $Name | ForEach-Object {
-            echo $_
-            git checkout $MainBranch -b $_ &&
-                git push -u origin $_ ||
-                &{ Throw }
-        }
-    }
+    git checkout develop &&
+        git pull &&
+        git checkout -b "feature/$Name" &&
+        git push -u origin "feature/$Name"
 }
