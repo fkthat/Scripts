@@ -216,3 +216,5 @@ function Start-Flow {
         git checkout -b "$Type/$Name" &&
         git push -u origin "$Type/$Name"
 }
+
+New-Alias saflow Start-Flow -Force
