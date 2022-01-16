@@ -203,13 +203,16 @@ New-Alias cover New-CoverageReport
 function Start-Flow {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $true, Position = 0)]
+        [Parameter(Position = 0)]
+        [ValidateSet('feature', 'fix')]
+        $Type = 'feature',
+        [Parameter(Mandatory = $true, Position = 1)]
         [string]
         $Name
     )
 
     git checkout develop &&
         git pull &&
-        git checkout -b "feature/$Name" &&
-        git push -u origin "feature/$Name"
+        git checkout -b "$Type/$Name" &&
+        git push -u origin "$Type/$Name"
 }
