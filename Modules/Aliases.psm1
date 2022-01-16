@@ -1,3 +1,7 @@
+#
+# Bins
+#
+
 New-Alias scp "${env:SystemRoot}\System32\OpenSSH\scp.exe" -Force
 New-Alias ssh "${env:SystemRoot}\System32\OpenSSH\ssh.exe" -Force
 
@@ -12,6 +16,7 @@ New-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\T
 New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -Force
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
 New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
+New-Alias glab "${env:ProgramFiles(x86)}\glab\glab.exe" -Force
 
 New-Alias azds "${env:LocalAppData}\Programs\Azure Data Studio\azuredatastudio.exe" -Force
 New-Alias dos2unix "${env:LocalAppData}\Programs\dos2unix\dos2unix.exe" -Force
@@ -30,7 +35,3 @@ New-Alias winget "${env:LocalAppData}\Microsoft\WindowsApps\winget.exe" -Force
 #
 
 New-Alias help Get-Help -Force
-
-#
-# SysTools
-#
