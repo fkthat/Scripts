@@ -2,57 +2,59 @@
 # Search WEB
 #
 
-function Get-EdgeSearchEngine {
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $false)]
-        [string]
-        $Keyword
-    )
+Class EdgeSearchEngines : System.Management.Automation.IValidateSetValuesGenerator {
+    static $engines;
 
-    $webData = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Web Data"
-    $tempWebData = New-TemporaryFile
-    Copy-Item $webData $tempWebData
-    try {
-        $q = 'select keyword, url from keywords where is_active = 1'
-        Invoke-SqliteQuery $q -Database $tempWebData |
-            Where-Object { -not $Keyword -or $_.keyword -eq $Keyword }
+    [string[]] GetValidValues() {
+        return [string[]]([EdgeSearchEngines]::GetAll() |
+            Select-Object -ExpandProperty keyword)
     }
-    finally {
-        Remove-Item $tempWebData
+
+    static [psobject[]] GetAll() {
+        if(-not [EdgeSearchEngines]::engines) {
+            $webData = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Web Data"
+            $tempWebData = New-TemporaryFile
+            Copy-Item $webData $tempWebData
+            try {
+                $q = 'select keyword, url from keywords where is_active = 1'
+                [EdgeSearchEngines]::engines = `
+                    Invoke-SqliteQuery $q -Database $tempWebData
+            }
+            finally {
+                Remove-Item $tempWebData
+            }
+        }
+
+        return [EdgeSearchEngines]::engines
     }
+}
+function Get-EdgeSearchEngine {
+    [EdgeSearchEngines]::GetAll()
 }
 
 function Search-Web {
 	[CmdletBinding()]
     param (
-        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true, ValueFromPipeline = $true)]
+        # Search engine keyword. Default to 'b' (Bing).
+        [Parameter(Position = 0)]
+        [ValidateSet([EdgeSearchEngines])]
+        $Engine = 'b',
+
+        [Parameter(ValueFromRemainingArguments = $true, ValueFromPipeline = $true)]
         [string[]]
         $Terms
     )
 
-    $engines = Get-EdgeSearchEngine
-
-    $url = $engines | `
-        Where-Object keyword -eq $Terms[0] | `
-        Select-Object -ExpandProperty url
-
-    if($url) {
-        $Terms = $Terms[1..($Terms.Length - 1)]
-    }
-    else {
-        $url = $engines | `
-            Where-Object keyword -eq 'b' | `
-            Select-Object -ExpandProperty url
-    }
-
     $t = ($Terms | Join-String -Separator ' ')
-    $url = $url -replace '{searchTerms}',([System.Uri]::EscapeDataString($t))
+
+    $url = ([EdgeSearchEngines]::GetAll() |
+        Where-Object keyword -eq $Engine |
+        Select-Object -ExpandProperty url)
+
+    $url = $url -replace `
+        '{searchTerms}', ([System.Uri]::EscapeDataString($t))
+
     Start-Process $url
 }
-
-#
-# Aliases
-#
 
 New-Alias srweb Search-Web -Force
