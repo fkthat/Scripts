@@ -205,16 +205,28 @@ function Start-Flow {
     param (
         [Parameter(Position = 0)]
         [ValidateSet('feature', 'fix')]
-        $Type = 'feature',
+        $Prefix = 'feature',
         [Parameter(Mandatory = $true, Position = 1)]
         [string]
-        $Name
+        $Name,
+        [Parameter()]
+        [switch]
+        $UpdateMain
     )
 
-    git checkout develop &&
-        git pull &&
-        git checkout -b "$Type/$Name" &&
-        git push -u origin "$Type/$Name"
+    $throw = { Throw }
+
+    if($UpdateMain) {
+        if((git branch --show-current || &$throw) -eq 'develop') {
+            git pull || &$throw
+        }
+        else {
+            git fetch origin develop:develop || &$throw
+        }
+    }
+
+    git checkout develop -b "$Prefix/$Name" &&
+        git push -u origin "$Prefix/$Name"
 }
 
 New-Alias saflow Start-Flow -Force
