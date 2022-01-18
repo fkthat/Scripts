@@ -244,7 +244,7 @@ function Invoke-DotNetBuild {
 
     switch($Target) {
         'clean' {
-            git clean -dfX -e '!.vs' -e '!*.suo' -e '.vscode/*'
+            git clean -dfX -e '!.vs' -e '!*.suo' -e '!.vscode/*'
         }
         'restore' {
             dotnet restore
