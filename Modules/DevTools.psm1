@@ -230,3 +230,32 @@ function Start-Flow {
 }
 
 New-Alias saflow Start-Flow -Force
+
+function Invoke-DotNetBuild {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position = 0)]
+        [ValidateSet('clean', 'restore', 'build', 'test')]
+        $Target = 'build',
+        [Parameter()]
+        [ValidateSet('Debug', 'Release')]
+        $Config = 'Debug'
+    )
+
+    switch($Target) {
+        'clean' {
+            git clean -dfX -e '!.vs' -e '!*.suo' -e '.vscode/*'
+        }
+        'restore' {
+            dotnet restore
+        }
+        'build' {
+            dotnet build -c $Config
+        }
+        'test' {
+            dotnet test -c $Config -l 'trx;LogFileName=testlog.trx'
+        }
+    }
+}
+
+New-Alias build Invoke-DotNetBuild -Force
