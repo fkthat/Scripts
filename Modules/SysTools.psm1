@@ -66,15 +66,18 @@ function Set-ItemDateTime {
 	[CmdletBinding()]
     param (
         [Parameter(Position = 0, ValueFromPipeline = $true)]
-        [string] $Path
+        [string] $Path,
+        [Parameter()]
+        [switch]
+        $Force
     )
 
     process {
         if(Test-Path $Path) {
-            Set-ItemProperty $Path -Name LastWriteTime  -Value (Get-Date)
+            Set-ItemProperty $Path -Name LastWriteTime -Value (Get-Date)
         }
         else {
-            New-Item $Path -ItemType File
+            New-Item $Path -ItemType File -Force:$Force
         }
     }
 }
