@@ -203,30 +203,16 @@ New-Alias cover New-CoverageReport
 function Start-Flow {
     [CmdletBinding()]
     param (
-        [Parameter(Position = 0)]
-        [ValidateSet('feature', 'fix')]
-        $Prefix = 'feature',
-        [Parameter(Mandatory = $true, Position = 1)]
-        [string]
-        $Name,
-        [Parameter()]
-        [switch]
-        $UpdateMain
+        [Parameter(Mandatory = $true, Position = 0)]
+        [ArgumentCompletions('feature/', 'fix/', 'QUGO-')]
+        $Name
     )
 
-    $throw = { Throw }
-
-    if($UpdateMain) {
-        if((git branch --show-current || &$throw) -eq 'develop') {
-            git pull || &$throw
-        }
-        else {
-            git fetch origin develop:develop || &$throw
-        }
-    }
-
-    git checkout develop -b "$Prefix/$Name" &&
-        git push -u origin "$Prefix/$Name"
+    git checkout develop -b "$Name" &&
+        git fetch origin develop:develop &&
+        git rebase develop &&
+        git push -u origin "$Name" `
+        || &{Throw}
 }
 
 New-Alias saflow Start-Flow -Force
@@ -253,7 +239,7 @@ function Invoke-DotNetBuild {
             dotnet build -c $Config
         }
         'test' {
-            dotnet test -c $Config -l 'trx;LogFileName=testlog.trx'
+            dotnet test -c $Config -l trx
         }
     }
 }
