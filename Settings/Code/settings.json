@@ -9,7 +9,7 @@
     "editor.rulers": [ 100 ],
     "editor.cursorSurroundingLines": 3,
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.defaultProfile.windows": "pwsh",
     "terminal.integrated.profiles.windows": {
         "pwsh": {
             "overrideName": true,
@@ -60,5 +60,7 @@
     },
     "[jsonc]": {
         "editor.tabSize": 2
-    }
+    },
+    "redhat.telemetry.enabled": false,
+    "extensions.ignoreRecommendations": true
 }
