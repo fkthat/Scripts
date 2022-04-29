@@ -15,7 +15,7 @@ New-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\T
 
 New-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" -Force
 New-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe" -Force
-New-Alias gh "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" -Force
+New-Alias gh "${env:ProgramFiles}\GitHub CLI\gh.exe" -Force
 New-Alias glab "${env:ProgramFiles(x86)}\glab\glab.exe" -Force
 
 New-Alias azds "${env:LocalAppData}\Programs\Azure Data Studio\azuredatastudio.exe" -Force
