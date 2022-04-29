@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions":
     [
@@ -71,8 +72,19 @@
             },
             {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+                "hidden": false,
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": true,
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": true,
+                "name": "Command Prompt"
             }
         ]
     },
@@ -123,6 +135,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#CCCCCC",
             "yellow": "#C19C00"
+        },
+        {
+            "background": "#3B3C35",
+            "black": "#3B3C35",
+            "blue": "#FD971F",
+            "brightBlack": "#6E7066",
+            "brightBlue": "#FD971F",
+            "brightCyan": "#66D9EF",
+            "brightGreen": "#A6E22E",
+            "brightPurple": "#AE81FF",
+            "brightRed": "#F92672",
+            "brightWhite": "#FDFFF1",
+            "brightYellow": "#E6DB74",
+            "cursorColor": "#FDFFF1",
+            "cyan": "#66D9EF",
+            "foreground": "#FDFFF1",
+            "green": "#A6E22E",
+            "name": "Monokai Pro",
+            "purple": "#AE81FF",
+            "red": "#F92672",
+            "selectionBackground": "#FDFFF1",
+            "white": "#FDFFF1",
+            "yellow": "#E6DB74"
         },
         {
             "background": "#282C34",
@@ -263,6 +298,29 @@
             "yellow": "#C4A000"
         },
         {
+            "background": "#2D2D2D",
+            "black": "#000000",
+            "blue": "#6699CC",
+            "brightBlack": "#000000",
+            "brightBlue": "#6699CC",
+            "brightCyan": "#66CCCC",
+            "brightGreen": "#99CC99",
+            "brightPurple": "#CC99CC",
+            "brightRed": "#F2777A",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFCC66",
+            "cursorColor": "#CCCCCC",
+            "cyan": "#66CCCC",
+            "foreground": "#CCCCCC",
+            "green": "#99CC99",
+            "name": "Tomorrow Night Eighties",
+            "purple": "#CC99CC",
+            "red": "#F2777A",
+            "selectionBackground": "#515151",
+            "white": "#FFFFFF",
+            "yellow": "#FFCC66"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -284,52 +342,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
-        },
-        {
-            "name": "Tomorrow Night Eighties",
-            "black": "#000000",
-            "red": "#f2777a",
-            "green": "#99cc99",
-            "yellow": "#ffcc66",
-            "blue": "#6699cc",
-            "purple": "#cc99cc",
-            "cyan": "#66cccc",
-            "white": "#ffffff",
-            "brightBlack": "#000000",
-            "brightRed": "#f2777a",
-            "brightGreen": "#99cc99",
-            "brightYellow": "#ffcc66",
-            "brightBlue": "#6699cc",
-            "brightPurple": "#cc99cc",
-            "brightCyan": "#66cccc",
-            "brightWhite": "#ffffff",
-            "background": "#2d2d2d",
-            "foreground": "#cccccc",
-            "selectionBackground": "#515151",
-            "cursorColor": "#cccccc"
-        },
-        {
-            "name": "Monokai Pro",
-            "black": "#3B3C35",
-            "red": "#F92672",
-            "green": "#A6E22E",
-            "yellow": "#E6DB74",
-            "blue": "#FD971F",
-            "purple": "#AE81FF",
-            "cyan": "#66D9EF",
-            "white": "#FDFFF1",
-            "brightBlack": "#6E7066",
-            "brightRed": "#F92672",
-            "brightGreen": "#A6E22E",
-            "brightYellow": "#E6DB74",
-            "brightBlue": "#FD971F",
-            "brightPurple": "#AE81FF",
-            "brightCyan": "#66D9EF",
-            "brightWhite": "#FDFFF1",
-            "background": "#3B3C35",
-            "foreground": "#FDFFF1",
-            "selectionBackground": "#FDFFF1",
-            "cursorColor": "#FDFFF1"
         }
     ]
 }
