@@ -21,8 +21,8 @@ services:
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_login
-      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
+      MONGO_INITDB_ROOT_USERNAME: fkthat
+      MONGO_INITDB_ROOT_PASSWORD: P@ssw0rd
     volumes:
       - 'mongo:/data'
     secrets:
