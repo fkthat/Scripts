@@ -15,38 +15,20 @@
     "datasource.connections": [
         {
             "options": {
-                "connectionName": "SQL",
+                "connectionName": "",
                 "server": "localhost",
-                "database": "master",
+                "database": "",
                 "authenticationType": "SqlLogin",
                 "user": "sa",
-                "password": "",
-                "applicationName": "azdata",
-                "originalDatabase": "master",
-                "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-                "databaseDisplayName": "master"
-            },
-            "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-            "providerName": "MSSQL",
-            "savePassword": true,
-            "id": "15e211d3-25ca-406a-8fad-520036c3f03d"
-        },
-        {
-            "options": {
-                "connectionName": "PG",
-                "host": "localhost",
-                "authenticationType": "SqlLogin",
-                "dbname": "",
-                "user": "postgres",
                 "password": "",
                 "applicationName": "azdata",
                 "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
                 "databaseDisplayName": ""
             },
             "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-            "providerName": "PGSQL",
+            "providerName": "MSSQL",
             "savePassword": true,
-            "id": "aa83d0ec-07ed-4af2-bedc-1905b5f3afb7"
+            "id": "56f2ddba-67af-4646-aa62-801abf01b056"
         }
     ],
     "workbench.enablePreviewFeatures": true,
