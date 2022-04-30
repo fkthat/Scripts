@@ -19,13 +19,13 @@ New-Alias gh "${env:ProgramFiles}\GitHub CLI\gh.exe" -Force
 New-Alias glab "${env:ProgramFiles(x86)}\glab\glab.exe" -Force
 
 New-Alias azds "${env:LocalAppData}\Programs\Azure Data Studio\azuredatastudio.exe" -Force
-New-Alias dos2unix "${env:LocalAppData}\Programs\dos2unix\dos2unix.exe" -Force
+New-Alias dos2unix "${env:LocalAppData}\Programs\dos2unix\bin\dos2unix.exe" -Force
 New-Alias dtui "${env:LocalAppData}\Programs\dt1.8.3\drop\dtui.exe" -Force
 New-Alias ffmpeg "${env:LocalAppData}\Programs\ffmpeg\bin\ffmpeg.exe" -Force
 New-Alias nuget "${env:LocalAppData}\Programs\NuGet\nuget.exe" -Force
 New-Alias procexp "${env:LocalAppData}\Programs\Sysinternals\ProcessXP\procexp64.exe" -Force
 New-Alias sqlite3 "${env:LocalAppData}\Programs\Sqlite\sqlite3.exe" -Force
-New-Alias unix2dos "${env:LocalAppData}\Programs\dos2unix\unix2dos.exe" -Force
+New-Alias unix2dos "${env:LocalAppData}\Programs\dos2unix\bin\unix2dos.exe" -Force
 New-Alias vi "${env:LocalAppData}\Programs\vim\vim82\vim.exe" -Force
 New-Alias vim "${env:LocalAppData}\Programs\vim\vim82\vim.exe" -Force
 New-Alias winget "${env:LocalAppData}\Microsoft\WindowsApps\winget.exe" -Force
