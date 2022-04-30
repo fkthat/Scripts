@@ -5,11 +5,11 @@ services:
   sql:
     image: mcr.microsoft.com/mssql/server:latest
     restart: always
+    ports:
+      - '1433:1433'
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
-    ports:
-      - '1433:1433'
     volumes:
       - 'sql:/var/opt/mssql'
     secrets:
@@ -21,8 +21,8 @@ services:
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: fkthat
-      MONGO_INITDB_ROOT_PASSWORD: P@ssw0rd
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_login
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
     volumes:
       - 'mongo:/data'
     secrets:
@@ -96,4 +96,3 @@ secrets:
     file: ./secrets/pgadmin_email.txt
   pgadmin_password:
     file: ./secrets/pgadmin_password.txt
-
