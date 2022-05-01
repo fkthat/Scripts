@@ -1,36 +1,4 @@
 {
-    "datasource.connectionGroups": [
-        {
-            "name": "ROOT",
-            "id": "C777F06B-202E-4480-B475-FA416154D458"
-        },
-        {
-            "name": "wsl",
-            "id": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-            "parentId": "C777F06B-202E-4480-B475-FA416154D458",
-            "color": "#515151",
-            "description": ""
-        }
-    ],
-    "datasource.connections": [
-        {
-            "options": {
-                "connectionName": "",
-                "server": "localhost",
-                "database": "",
-                "authenticationType": "SqlLogin",
-                "user": "sa",
-                "password": "",
-                "applicationName": "azdata",
-                "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-                "databaseDisplayName": ""
-            },
-            "groupId": "06dd6ff6-9e56-4efc-859f-a039cbb68f83",
-            "providerName": "MSSQL",
-            "savePassword": true,
-            "id": "56f2ddba-67af-4646-aa62-801abf01b056"
-        }
-    ],
     "workbench.enablePreviewFeatures": true,
     "workbench.startupEditor": "welcomePage",
     "workbench.colorTheme": "Default Dark Azure Data Studio",
@@ -46,5 +14,5 @@
     "[sql]": {
         "editor.defaultFormatter": "Microsoft.mssql"
     },
-    "mssql.intelliSense.lowerCaseSuggestions": true,
+    "mssql.intelliSense.lowerCaseSuggestions": true
 }
