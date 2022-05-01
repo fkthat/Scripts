@@ -5,11 +5,11 @@ services:
   sql:
     image: mcr.microsoft.com/mssql/server:latest
     restart: always
-    ports:
-      - '1433:1433'
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
+    ports:
+      - '1433:1433'
     volumes:
       - 'sql:/var/opt/mssql'
     secrets:
@@ -18,11 +18,11 @@ services:
   mongo:
     image: mongo:latest
     restart: always
-    ports:
-      - '27017:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_login
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
+    ports:
+      - '27017:27017'
     volumes:
       - 'mongo:/data'
     secrets:
@@ -42,19 +42,13 @@ services:
       - postgres_password
 
   pgadmin:
+    image: dpage/pgadmin4:latest
     restart: always
-    build:
-      context: ./pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL_FILE: /run/secrets/pgadmin_email
-      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pgadmin_password
+    env_file: ./secrets/pgadmin.env
     ports:
       - '5050:80'
     volumes:
       - 'pgadmin:/var/lib/pgadmin'
-    secrets:
-      - pgadmin_email
-      - pgadmin_password
 
   smtp4dev:
     image: rnwood/smtp4dev:latest
@@ -92,7 +86,3 @@ secrets:
     file: ./secrets/mongo_password.txt
   postgres_password:
     file: ./secrets/postgres_password.txt
-  pgadmin_email:
-    file: ./secrets/pgadmin_email.txt
-  pgadmin_password:
-    file: ./secrets/pgadmin_password.txt
