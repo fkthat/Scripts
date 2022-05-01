@@ -67,6 +67,3 @@ imap <F2> <c-o><F2>
 nmap ZS :w<CR>
 nmap ZA :wa<CR>
 
-let &t_SI.="\e[6 q"
-let &t_SR.="\e[3 q"
-let &t_EI.="\e[2 q"
