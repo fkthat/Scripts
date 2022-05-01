@@ -30,8 +30,6 @@ function Start-VisualStudio {
     }
 }
 
-New-Alias vs Start-VisualStudio
-
 <#
 .SYNOPSIS
 Starts VSCode.
@@ -57,8 +55,6 @@ function Start-VSCode {
             ForEach-Object { & $code $_ -n }
     }
 }
-
-New-Alias code Start-VSCode
 
 <#
 .SYNOPSIS
@@ -198,13 +194,11 @@ function New-CoverageReport {
     }
 }
 
-New-Alias cover New-CoverageReport
-
 function Start-Flow {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, Position = 0)]
-        [ArgumentCompletions('feature/', 'fix/', 'QUGO-')]
+        [ArgumentCompletions('feature/', 'fix/')]
         $Name
     )
 
@@ -214,8 +208,6 @@ function Start-Flow {
         git push -u origin "$Name" `
         || &{Throw}
 }
-
-New-Alias saflow Start-Flow -Force
 
 function Invoke-DotNetBuild {
     [CmdletBinding()]
@@ -244,4 +236,9 @@ function Invoke-DotNetBuild {
     }
 }
 
+New-Alias vs Start-VisualStudio
+New-Alias code Start-VSCode
+New-Alias cover New-CoverageReport
+New-Alias saflow Start-Flow -Force
 New-Alias build Invoke-DotNetBuild -Force
+
