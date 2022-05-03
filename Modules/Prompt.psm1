@@ -30,5 +30,5 @@ function Prompt {
         $user ="$esc[92m$env:USERNAME@$env:COMPUTERNAME"
     }
 
-    return "PS ${user}:$esc[34m$cp$esc[37m`$ "
+    return "PS ${user}:$esc[34m$cp$esc[37m`$ $esc[5 q"
 }
