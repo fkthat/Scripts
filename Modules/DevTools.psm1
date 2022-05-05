@@ -236,9 +236,111 @@ function Invoke-DotNetBuild {
     }
 }
 
-New-Alias vs Start-VisualStudio
-New-Alias code Start-VSCode
-New-Alias cover New-CoverageReport
+function Find-CSProject {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Path
+    )
+
+    begin {
+        [System.IO.Directory]::SetCurrentDirectory($pwd)
+    }
+
+    process {
+        $Path | ForEach-Object {
+            $p = [System.IO.Path]::GetFullPath($_)
+            while ($p) {
+                if (Join-Path $p "*.csproj" | Test-Path -PathType Leaf) {
+                    Get-ChildItem $p -File -Filter "*.csproj"
+                    break
+                }
+
+                $p = Split-Path $p -Parent
+            }
+        }
+    }
+}
+
+function Get-CSProjectNamespace {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+        [string[]]
+        $Path
+    )
+
+    process {
+        $Path | ForEach-Object {
+            $xml = [xml](Get-Content $_)
+            $rns = $xml.SelectNodes("/Project/PropertyGroup/RootNamespace")
+
+            if($rns -and $rns.Count -gt 0) {
+                $rns | Select-Object -ExpandProperty InnerText
+            }
+            else {
+                Split-Path $_ -LeafBase
+            }
+        }
+    }
+}
+
+function New-CSharpItem {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $false, Position = 0)]
+        [string]
+        $Path = ".",
+        [Parameter(Mandatory = $false, Position = 1)]
+        [string]
+        $Name,
+        [Parameter(Mandatory = $false, Position = 2)]
+        [ValidateSet("class", "interface", "enum", "controller", "worker")]
+        $Template = "class",
+        [Parameter(Mandatory = $false, Position = 3)]
+        [ValidateSet("public", "internal")]
+        $Visibility = "public",
+        [switch]
+        $Static
+    )
+
+    # Throw if $Path is a file
+    if((Test-Path $Path) -and (Get-Item $Path) -is [System.IO.FileInfo]) {
+        Throw "$Path is a file"
+    }
+
+    # Default names like 'Class', 'Interface', etc
+    if(-not $Name) {
+        $Name = $Template -replace "^.",$Template.Substring(0,1).ToUpper()
+    }
+
+    # Throw if already exists
+    $csPath = (Join-Path $Path $Name) + ".cs"
+    if(Test-Path $csPath) {
+        Throw "$csPath alredy exists"
+    }
+
+    if(-not (Test-Path $Path)) {
+        New-Item $Path -ItemType Directory
+    }
+
+    $Path | Find-CSProject | Get-CSProjectNamespace | Select-Object -First 1 |
+        ForEach-Object {
+            if(-not $Static) {
+                dotnet new "ft-item" -o $Path `
+                    -na $_ -v $Visibility -t $Template -n $Name
+            }
+            else {
+                dotnet new "ft-item" -o $Path `
+                    -na $_ -v $Visibility -s -t $Template -n $Name
+            }
+        }
+}
+
+New-Alias vs Start-VisualStudio -Force
+New-Alias code Start-VSCode -Force
+New-Alias cover New-CoverageReport -Force
 New-Alias saflow Start-Flow -Force
 New-Alias build Invoke-DotNetBuild -Force
-
+New-Alias ncsi New-CSharpItem -Force
