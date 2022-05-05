@@ -95,8 +95,9 @@ nmap ZS :w<CR>
 nmap ZA :wa<CR>
 
 " Cursor shape
-" let &t_EI = "\<ESC>[1 q" "NORMAL mode
-" let &t_SI = "\<ESC>[5 q" "INSERT mode
+let &t_EI = "\<ESC>[1 q" "NORMAL mode
+let &t_SI = "\<ESC>[5 q" "INSERT mode
+" There's problems with 'r' so it's commented out.
 " let &t_SR = "\<ESC>[3 q" "REPLACE mode
 
 " Play 'q' macro
