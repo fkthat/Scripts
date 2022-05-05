@@ -24,11 +24,19 @@ function Prompt {
         $host.UI.RawUI.WindowTitle = $cp
     }
 
+    $prompt = "PS "
+
     if(Test-Elevated) {
-        $user = "$esc[31mADMIN@$env:COMPUTERNAME"
+        $prompt += "$esc[31mADMIN@$env:COMPUTERNAME"
     } else {
-        $user ="$esc[92m$env:USERNAME@$env:COMPUTERNAME"
+        $prompt += "$esc[92m$env:USERNAME@$env:COMPUTERNAME"
     }
 
-    return "PS ${user}:$esc[34m$cp$esc[37m`$ $esc[5 q"
+    $prompt +=  ":$esc[34m$cp$esc[37m`$ "
+
+    if( $env:TERM_PROGRAM -ne "vscode") {
+        $prompt += "$esc[5 q"
+    }
+
+    return "$prompt"
 }
