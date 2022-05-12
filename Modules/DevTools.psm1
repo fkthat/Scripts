@@ -199,10 +199,12 @@ function Start-Flow {
     param (
         [Parameter(Mandatory = $true, Position = 0)]
         [ArgumentCompletions('feature/', 'fix/')]
-        $Name
+        $Name,
+        [Parameter(Mandatory = $false)]
+        $Base = "develop"
     )
 
-    git checkout develop -b "$Name" &&
+    git checkout "$Base" -b "$Name" &&
         git fetch origin develop:develop &&
         git rebase develop &&
         git push -u origin "$Name" `
