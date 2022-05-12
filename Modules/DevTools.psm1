@@ -204,10 +204,9 @@ function Start-Flow {
         $Base = "develop"
     )
 
-    git checkout "$Base" -b "$Name" &&
-        git fetch origin develop:develop &&
-        git rebase develop &&
-        git push -u origin "$Name" `
+    git fetch origin "${Base}:${Base}" &&
+        git checkout $Base -b $Name &&
+        git push -u origin $Name `
         || &{Throw}
 }
 
