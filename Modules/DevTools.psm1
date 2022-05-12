@@ -198,14 +198,15 @@ function Start-Flow {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, Position = 0)]
-        [ArgumentCompletions('feature/', 'fix/')]
+        [ArgumentCompletions('feature/', 'fix/', 'bug/')]
         $Name,
         [Parameter(Mandatory = $false)]
         $Base = "develop"
     )
 
-    git fetch origin "${Base}:${Base}" &&
-        git checkout $Base -b $Name &&
+    git checkout $Base -b $Name &&
+        git fetch origin "${Base}:${Base}" &&
+        git rebase $Base &&
         git push -u origin $Name `
         || &{Throw}
 }
