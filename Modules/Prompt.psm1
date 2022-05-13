@@ -26,17 +26,22 @@ function Prompt {
 
     $prompt = "PS "
 
-    if(Test-Elevated) {
-        $prompt += "$esc[31mADMIN@$env:COMPUTERNAME"
+    $ComputerName = [System.Environment]::MachineName
+    $UserName = [System.Environment]::UserName
+
+    if($PSVersionTable -eq "Win32NT" -and (Test-Elevated)) {
+        $prompt += "$esc[31m"
+        $Tail = '#'
     } else {
-        $prompt += "$esc[92m$env:USERNAME@$env:COMPUTERNAME"
+        $prompt += "$esc[92m"
+        $Tail = '$'
     }
 
-    $prompt +=  ":$esc[34m$cp$esc[37m`$ "
+    $prompt +=  "$UserName@${ComputerName}:$esc[34m$cp$esc[37m$Tail "
 
-    if( $env:TERM_PROGRAM -ne "vscode") {
+    if($env:TERM_PROGRAM -ne "vscode") {
         $prompt += "$esc[5 q"
     }
 
-    return "$prompt"
+    return $prompt
 }
