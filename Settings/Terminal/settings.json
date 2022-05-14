@@ -93,6 +93,14 @@
                 "guid": "{b9f3cf83-a9f4-47b0-a31e-288952382d2f}",
                 "hidden": false,
                 "name": "Asgard"
+            },
+            {
+                "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+                "startingDirectory": "~\\Projects\\FkThat\\Templates",
+                "guid": "{58657a3e-3c1a-4456-b62b-3193c1530e6e}",
+                "hidden": false,
+                "name": "Templates"
             }
         ]
     },
