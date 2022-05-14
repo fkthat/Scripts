@@ -83,7 +83,7 @@ autocmd BufRead,BufNewFile *.yml,*.yaml set tabstop=2 | set shiftwidth=2
 
 " Set Shell
 
-if has('win64')
+if has('win32')
     set shell=\"C:\\Program\ Files\\PowerShell\\7\\pwsh.exe\"\ -NoLogo
     set shellcmdflag=-Command
 endif
@@ -113,3 +113,4 @@ endif
 
 " Play 'q' macro
 :nnoremap <Space> @q
+
