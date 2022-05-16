@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+
+  sql:
+    image: mcr.microsoft.com/mssql/server:latest
+    restart: always
+    user: root
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
+    ports:
+      - '192.168.0.201:1433:1433/tcp'
+    volumes:
+      - 'sql:/var/opt/mssql'
+    secrets:
+      - sql_password
+
+volumes:
+  sql:
+
+secrets:
+  sql_password:
+    file: ./secrets/sql_password.txt
