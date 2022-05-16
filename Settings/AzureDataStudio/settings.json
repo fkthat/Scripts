@@ -14,5 +14,30 @@
     "[sql]": {
         "editor.defaultFormatter": "Microsoft.mssql"
     },
-    "mssql.intelliSense.lowerCaseSuggestions": true
+    "mssql.intelliSense.lowerCaseSuggestions": true,
+    "datasource.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "C777F06B-202E-4480-B475-FA416154D458"
+        }
+    ],
+    "datasource.connections": [
+        {
+            "options": {
+                "connectionName": "",
+                "server": "auc-sql-dev.cislink.moscow",
+                "database": "",
+                "authenticationType": "SqlLogin",
+                "user": "sa",
+                "password": "",
+                "applicationName": "azdata",
+                "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+                "databaseDisplayName": ""
+            },
+            "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+            "providerName": "MSSQL",
+            "savePassword": true,
+            "id": "41a827f7-03bb-4f06-9cae-367865f584a5"
+        }
+    ]
 }
