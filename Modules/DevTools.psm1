@@ -291,12 +291,12 @@ function Get-CSProjectNamespace {
 function New-CSharpItem {
     [CmdletBinding()]
     param (
+        [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $true)]
+        [string[]]
+        $Name,
         [Parameter(Mandatory = $false, Position = 0)]
         [string]
-        $Path = ".",
-        [Parameter(Mandatory = $false, Position = 1)]
-        [string]
-        $Name,
+        $Output = ".",
         [Parameter(Mandatory = $false, Position = 2)]
         [ValidateSet("class", "interface", "enum", "controller", "worker")]
         $Template = "class",
@@ -307,37 +307,45 @@ function New-CSharpItem {
         $Static
     )
 
-    # Throw if $Path is a file
-    if((Test-Path $Path) -and (Get-Item $Path) -is [System.IO.FileInfo]) {
-        Throw "$Path is a file"
+    begin {
+        # Throw if $Output is a file
+        if ((Test-Output $Output) -and (Get-Item $Output) -is [System.IO.FileInfo]) {
+            Throw "$Output is a file"
+        }
+
+        # Default names like 'Class', 'Interface', etc
+        if (-not $Name) {
+            $Name = $Template -replace "^.", $Template.Substring(0, 1).ToUpper()
+        }
     }
 
-    # Default names like 'Class', 'Interface', etc
-    if(-not $Name) {
-        $Name = $Template -replace "^.",$Template.Substring(0,1).ToUpper()
-    }
+    process {
+        $Name | ForEach-Object {
+            $csPath = (Join-Output $Output $Name) + ".cs"
 
-    # Throw if already exists
-    $csPath = (Join-Path $Path $Name) + ".cs"
-    if(Test-Path $csPath) {
-        Throw "$csPath alredy exists"
-    }
-
-    if(-not (Test-Path $Path)) {
-        New-Item $Path -ItemType Directory
-    }
-
-    $Path | Find-CSProject | Get-CSProjectNamespace | Select-Object -First 1 |
-        ForEach-Object {
-            if(-not $Static) {
-                dotnet new "ft-item" -o $Path `
-                    -na $_ -v $Visibility -t $Template -n $Name
+            if (-not (Test-Output $csPath)) {
             }
             else {
-                dotnet new "ft-item" -o $Path `
-                    -na $_ -v $Visibility -s -t $Template -n $Name
+                Write-Warning "$csPath alredy exists"
             }
+
+            if (-not (Test-Output $Output)) {
+                New-Item $Output -ItemType Directory
+            }
+
+            $Output | Find-CSProject | Get-CSProjectNamespace | Select-Object -First 1 |
+                ForEach-Object {
+                    if (-not $Static) {
+                        dotnet new "ft-item" -o $Output `
+                            -na $_ -v $Visibility -t $Template -n $Name
+                    }
+                    else {
+                        dotnet new "ft-item" -o $Output `
+                            -na $_ -v $Visibility -s -t $Template -n $Name
+                    }
+                }
         }
+    }
 }
 
 New-Alias vs Start-VisualStudio -Force
