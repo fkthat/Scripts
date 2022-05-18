@@ -99,6 +99,24 @@
             {
                 "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
                 "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+                "guid": "{4e0a96ee-ee6c-4830-b95d-22ffb7d171e9}",
+                "hidden": false,
+                "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
+                "name": "Projects/Cislink",
+                "startingDirectory": "%USERPROFILE%\\Projects\\Cislink"
+            },
+            {
+                "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+                "guid": "{30872674-ff41-4215-8162-97160b31b5ce}",
+                "hidden": false,
+                "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
+                "name": "Projects/Cislink/Auction",
+                "startingDirectory": "%USERPROFILE%\\Projects\\Cislink\\Auction-Main"
+            },
+            {
+                "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
                 "guid": "{41af92cb-07cd-4b99-a1e9-237ddfb2b3bc}",
                 "hidden": false,
                 "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
