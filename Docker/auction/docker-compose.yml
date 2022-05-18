@@ -5,7 +5,6 @@ services:
   sql:
     image: mcr.microsoft.com/mssql/server:latest
     restart: always
-    user: root
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
