@@ -90,15 +90,6 @@
             {
                 "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
                 "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
-                "guid": "{f1081b5c-cdde-415e-92e5-83ebc2b976e6}",
-                "hidden": false,
-                "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
-                "name": "Scripts",
-                "startingDirectory": "%USERPROFILE%\\Scripts"
-            },
-            {
-                "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
-                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
                 "guid": "{4e0a96ee-ee6c-4830-b95d-22ffb7d171e9}",
                 "hidden": false,
                 "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
@@ -122,6 +113,15 @@
                 "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
                 "name": "Projects/FkThat",
                 "startingDirectory": "%USERPROFILE%\\Projects\\FkThat"
+            },
+            {
+                "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+                "guid": "{f1081b5c-cdde-415e-92e5-83ebc2b976e6}",
+                "hidden": false,
+                "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
+                "name": "Projects/FkThat/Scripts",
+                "startingDirectory": "%USERPROFILE%\\Scripts"
             },
             {
                 "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
