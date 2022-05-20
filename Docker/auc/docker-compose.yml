@@ -4,14 +4,14 @@ services:
 
   sql:
     image: mcr.microsoft.com/mssql/server:latest
-    user: root
     restart: always
+#    user: root
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
       MSSQL_BACKUP_DIR: /var/opt/mssql/bak/
     ports:
-      - '192.168.0.201:1433:1433/tcp'
+      - '192.168.236.101:1433:1433/tcp'
     volumes:
       - 'sql:/var/opt/mssql'
     secrets:
