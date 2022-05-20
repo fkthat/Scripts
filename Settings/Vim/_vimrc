@@ -112,5 +112,5 @@ if has('unix')
 endif
 
 " Play 'q' macro
-:nnoremap <Space> @q
+nnoremap <Space> @q
 
