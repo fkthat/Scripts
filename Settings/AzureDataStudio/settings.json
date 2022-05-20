@@ -42,7 +42,7 @@
         {
             "options": {
                 "connectionName": "",
-                "server": "auc-sql-dev.fkthat.net",
+                "server": "auc.fkthat.net",
                 "database": "",
                 "authenticationType": "SqlLogin",
                 "user": "sa",
