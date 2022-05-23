@@ -89,8 +89,8 @@ if has('win32')
 endif
 
 if has('unix')
-    set shell=pwsh\ -NoLogo
-    set shellcmdflag=-Command
+    set shell=/bin/bash
+    set shellcmdflag=-c
 endif
 
 " Save file keymaps
