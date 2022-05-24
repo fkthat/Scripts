@@ -211,29 +211,41 @@ function Start-Flow {
         || &{Throw}
 }
 
+function Clear-Git {
+    git clean -dfX -e '!.vs' -e '!*.suo' -e '!.vscode/*'
+}
+
 function Invoke-DotNetBuild {
     [CmdletBinding()]
     param (
-        [Parameter(Position = 0)]
-        [ValidateSet('clean', 'restore', 'build', 'test')]
+        [Parameter(Mandatory = $false, Position = 0)]
+        [ValidateSet('restore', 'build', 'test')]
         $Target = 'build',
+
+        [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $true)]
+        [string[]]
+        $Path = @('.'),
+
         [Parameter()]
         [ValidateSet('Debug', 'Release')]
         $Config = 'Debug'
     )
 
-    switch($Target) {
-        'clean' {
-            git clean -dfX -e '!.vs' -e '!*.suo' -e '!.vscode/*'
-        }
-        'restore' {
-            dotnet restore
-        }
-        'build' {
-            dotnet build -c $Config
-        }
-        'test' {
-            dotnet test -c $Config -l trx
+    process {
+        $Path | ForEach-Object {
+            $p = $_
+
+            switch ($Target) {
+                'restore' {
+                    dotnet restore $p
+                }
+                'build' {
+                    dotnet build $p -c $Config
+                }
+                'test' {
+                    dotnet test $p -c $Config -l trx
+                }
+            }
         }
     }
 }
@@ -348,9 +360,9 @@ function New-CSharpItem {
     }
 }
 
-New-Alias vs Start-VisualStudio -Force
-New-Alias code Start-VSCode -Force
-New-Alias cover New-CoverageReport -Force
-New-Alias saflow Start-Flow -Force
-New-Alias build Invoke-DotNetBuild -Force
-New-Alias ncsi New-CSharpItem -Force
+Set-Alias vs Start-VisualStudio
+Set-Alias code Start-VSCode
+Set-Alias ncover New-CoverageReport
+Set-Alias saflow Start-Flow
+Set-Alias build Invoke-DotNetBuild
+Set-Alias ncsi New-CSharpItem
