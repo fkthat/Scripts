@@ -40,7 +40,7 @@ function Search-Web {
         [ValidateSet([EdgeSearchEngines])]
         $Engine = 'b',
 
-        [Parameter(ValueFromRemainingArguments = $true, ValueFromPipeline = $true)]
+        [Parameter(ValueFromRemainingArguments = $true)]
         [string[]]
         $Terms
     )
@@ -57,4 +57,16 @@ function Search-Web {
     Start-Process $url
 }
 
-New-Alias srweb Search-Web -Force
+function Search-Bing {
+	[CmdletBinding()]
+    param (
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]
+        $Terms
+    )
+
+    Search-Web b $Terms
+}
+
+Set-Alias srweb Search-Web
+Set-Alias srbing Search-Bing
