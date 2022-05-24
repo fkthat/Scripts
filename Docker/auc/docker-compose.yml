@@ -9,6 +9,7 @@ services:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD_FILE: /run/secrets/sql_password
       MSSQL_BACKUP_DIR: /var/opt/mssql/bak/
+      MSSQL_COLLATION: Cyrillic_General_CI_AS
     ports:
       - '192.168.236.101:1433:1433/tcp'
     volumes:
