@@ -121,7 +121,7 @@
                 "hidden": false,
                 "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
                 "name": "Projects/FkThat/Scripts",
-                "startingDirectory": "%USERPROFILE%\\Scripts"
+                "startingDirectory": "%USERPROFILE%\\Projects\\FkThat\\Scripts"
             },
             {
                 "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
