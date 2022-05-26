@@ -32,17 +32,16 @@ function Start-VM {
             Select-Object -ExpandProperty Name
         })]
         [string[]]
-        $Name
+        $Name = @() + (Get-VM | Where-Object -not Running | Select-Object -ExpandProperty Name),
+
+        [Parameter(Mandatory = $false)]
+        [ValidateSet('gui', 'headless')]
+        $GuiType = 'headless'
     )
 
     process {
-        if(-not $Name) {
-            $Name = Get-VM | Where-Object -not Running |
-                Select-Object -ExpandProperty Name
-        }
-
         $Name | ForEach-Object {
-            & $vbman startvm $Name -type $guiType
+            & $vbman startvm $_ --type $GuiType
         }
     }
 }
@@ -57,15 +56,10 @@ function Stop-VM {
             Select-Object -ExpandProperty Name
         })]
         [string[]]
-        $Name
+        $Name = @() + (Get-VM | Where-Object Running | Select-Object -ExpandProperty Name)
     )
 
     process {
-        if(-not $Name) {
-            $Name = Get-VM | Where-Object Running |
-                Select-Object -ExpandProperty Name
-        }
-
         $Name | ForEach-Object {
             & $vbman controlvm $_ acpipowerbutton
         }
