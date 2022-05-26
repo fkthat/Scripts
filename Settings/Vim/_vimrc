@@ -114,3 +114,7 @@ endif
 " Play 'q' macro
 nnoremap <Space> @q
 
+" Russian keymap
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
