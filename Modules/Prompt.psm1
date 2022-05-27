@@ -10,40 +10,58 @@ function Test-Elevated() {
     }
 }
 
-function Prompt {
-    $esc = [char]27;
-
-    $cp = (Get-Location).Path
-
-    if ($cp.StartsWith($HOME)) {
-        $cp = '~' + $cp.Substring($HOME.Length)
+function Get-TerminalColorString(
+    [Parameter(Mandatory = $true, Position = 0)]
+    [ValidateSet('white', 'green', 'blue', 'red')]
+    $Color
+) {
+    switch ($Color) {
+        'white' { "`e[37m" }
+        'green' { "`e[32m" }
+        'blue' { "`e[34m" }
+        'red' { "`e[31m" }
     }
-
-    if( $cp -ne '~') {
-        $host.UI.RawUI.WindowTitle = $cp | Split-Path -Leaf
-    }
-    else {
-        $host.UI.RawUI.WindowTitle = $cp
-    }
-
-    $prompt = "PS "
-
-    $ComputerName = [System.Environment]::MachineName
-    $UserName = [System.Environment]::UserName
-
-    if(Test-Elevated) {
-        $prompt += "$esc[31m"
-        $Tail = '#'
-    } else {
-        $prompt += "$esc[92m"
-        $Tail = '$'
-    }
-
-    $prompt +=  "$UserName@${ComputerName}$esc[37m:$esc[34m$cp$esc[37m$Tail "
-
-    if($env:TERM_PROGRAM -ne "vscode") {
-        $prompt += "$esc[5 q"
-    }
-
-    return $prompt
 }
+
+function Get-PromptPath {
+    Get-Location | Select-Object -ExpandProperty Path |
+        ForEach-Object {
+            $_ -eq ${HOME} -or $_.StartsWith($HOME + [System.IO.Path]::DirectorySeparatorChar) `
+                ? '~' + $_.Substring($HOME.Length) : $_
+        }
+}
+
+function Get-TerminalTitle {
+    Get-PromptPath | ForEach-Object {
+        $_ -eq "~" ? $_ : (Split-Path $_ -Leaf)
+    }
+}
+
+function Get-PromptUserInfo  {
+    "$([System.Environment]::UserName)@$([System.Environment]::MachineName)"
+}
+
+function Get-PromptUserInfoColorString {
+     Get-TerminalColorString ((Test-Elevated) ? "red" : "green")
+}
+
+function Get-PromptSuffix {
+    (Test-Elevated) ? "#" : "$"
+}
+
+function  Get-ResetCursorString {
+    $env:TERM_PROGRAM -ne "vscode" ? "`e[5 q" : ""
+}
+
+function Prompt {
+    $host.UI.RawUI.WindowTitle = Get-TerminalTitle
+
+    "$(Get-TerminalColorString "white")PS " + `
+    "$(Get-PromptUserInfoColorString)$(Get-PromptUserInfo)" + `
+    "$(Get-TerminalColorString "white"):" + `
+    "$(Get-TerminalColorString "blue")$(Get-PromptPath)" +`
+    "$(Get-TerminalColorString "white")$(Get-PromptSuffix) " + `
+    "$(Get-ResetCursorString)"
+}
+
+Export-ModuleMember -Function "Prompt"
