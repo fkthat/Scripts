@@ -32,9 +32,7 @@ function Get-PromptPath {
 }
 
 function Get-TerminalTitle {
-    Get-PromptPath | ForEach-Object {
-        $_ -eq "~" ? $_ : (Split-Path $_ -Leaf)
-    }
+    Get-PromptPath
 }
 
 function Get-PromptUserInfo  {
