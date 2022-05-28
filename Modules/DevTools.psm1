@@ -181,9 +181,17 @@ function New-CoverageReport {
         $OutDir = (Get-TemporaryPath)
     )
 
+    begin {
+        $reports = @()
+    }
+
     process {
-        $reports = Join-String -InputObject $Path -Separator ';'
-        $log = reportgenerator -reports:$reports -targetdir:$OutDir
+        $reports += $Name
+    }
+
+    end {
+        $r = $reports -join ";"
+        $log = reportgenerator -reports:$r -targetdir:$OutDir
 
         if($?) {
             Join-Path $OutDir 'index.html'
