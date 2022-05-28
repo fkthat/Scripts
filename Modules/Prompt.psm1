@@ -24,11 +24,9 @@ function Get-TerminalColorString(
 }
 
 function Get-PromptPath {
-    Get-Location | Select-Object -ExpandProperty Path |
-        ForEach-Object {
-            $_ -eq ${HOME} -or $_.StartsWith($HOME + [System.IO.Path]::DirectorySeparatorChar) `
-                ? '~' + $_.Substring($HOME.Length) : $_
-        }
+    $h = [regex]::Escape($HOME)
+    $s = [regex]::Escape([System.IO.Path]::DirectorySeparatorChar)
+    (Get-Location).Path -replace "^${h}(?<tail>${s}.*)?",'~${tail}'
 }
 
 function Get-TerminalTitle {
