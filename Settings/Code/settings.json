@@ -50,6 +50,14 @@
             "commands": [
                 ":w"
             ]
+        },
+        {
+            "before": [
+                "<Space>"
+            ],
+            "commands": [
+                "@q"
+            ]
         }
     ],
     "[html]": {
