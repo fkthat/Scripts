@@ -15,6 +15,7 @@ if($PSVersionTable.Platform -eq "Win32NT") {
     Set-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE"
     Set-Alias gh "${env:ProgramFiles}\GitHub CLI\gh.exe"
     Set-Alias microk8s "${env:ProgramFiles}\MicroK8s\microk8s.exe"
+    Set-Alias multipass "${env:ProgramFiles}\Multipass\bin\multipass.exe"
 
     Set-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd"
     Set-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe"
