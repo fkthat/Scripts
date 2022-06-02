@@ -13,10 +13,11 @@ if($PSVersionTable.Platform -eq "Win32NT") {
     Set-Alias minikube "${env:ProgramFiles}\Kubernetes\Minikube\minikube.exe"
     Set-Alias paint "${env:ProgramFiles}\paint.net\PaintDotNet.exe"
     Set-Alias sqlcmd "${env:ProgramFiles}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE"
+    Set-Alias gh "${env:ProgramFiles}\GitHub CLI\gh.exe"
+    Set-Alias microk8s "${env:ProgramFiles}\MicroK8s\microk8s.exe"
 
     Set-Alias az "${env:ProgramFiles(x86)}\Microsoft SDKs\Azure\CLI2\wbin\az.cmd"
     Set-Alias decompile "${env:ProgramFiles(x86)}\Progress\JustDecompile\Libraries\JustDecompile.exe"
-    Set-Alias gh "${env:ProgramFiles}\GitHub CLI\gh.exe"
     Set-Alias glab "${env:ProgramFiles(x86)}\glab\glab.exe"
     Set-Alias dotnet-core-uninstall "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
 
