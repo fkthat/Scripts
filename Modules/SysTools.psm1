@@ -23,8 +23,6 @@ function Get-DiskInfo {
     }
 }
 
-New-Alias gdi Get-DiskInfo -Force
-
 # Links
 
 function New-ItemLink {
@@ -108,7 +106,7 @@ function Edit-Hosts {
 
 function Start-AdminTerminal {
     [CmdletBinding()]
-    $term = 'shell:appsFolder\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe!App'
+    $term = 'shell:appsFolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App'
     Start-Process $term -Verb RunAs
 }
 
@@ -168,6 +166,14 @@ function Remove-EnvironmentVariable {
     }
 }
 
+function Test-ElevatedUser {
+    if($PSVersionTable.Platform -eq 'Win32NT') {
+        $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+        $principal = New-Object Security.Principal.WindowsPrincipal $identity
+        Write-Output $principal.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+    }
+}
+
 function Reset-EnvironmentVariables {
     [CmdletBinding()]
     param (
@@ -176,13 +182,19 @@ function Reset-EnvironmentVariables {
         $Scope = 'user'
     )
 
-    Set-EnvironmentVariable 'PATH' `
-        -Value '%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem' `
-        -Scope Machine -Type ExpandString
+    Set-EnvironmentVariable 'VBOX_USER_HOME' `
+        -Value '%USERPROFILE%\VirtualBox\Config' `
+        -Scope User -Type ExpandString
 
     Set-EnvironmentVariable 'PATH' `
         -Value '%ProgramFiles%\dotnet;%ProgramFiles%\Git\bin;%USERPROFILE%\.dotnet\tools' `
         -Scope User -Type ExpandString
+
+    if(Test-ElevatedUser) {
+        Set-EnvironmentVariable 'PATH' `
+            -Value '%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem' `
+            -Scope Machine -Type ExpandString
+    }
 }
 
 #
@@ -348,3 +360,5 @@ New-Alias su Start-AdminTerminal -Force
 New-Alias touch Set-ItemDateTime -Force
 New-Alias sed Edit-FileContent -Force
 New-Alias pbimg Publish-BB -Force
+New-Alias gdi Get-DiskInfo -Force
+
