@@ -36,4 +36,4 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 #
 
 Import-Module posh-git
-Import-Module DockerCompletion
+
