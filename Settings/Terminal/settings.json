@@ -88,6 +88,14 @@
                 "name": "Asgard"
             },
             {
+                "backgroundImage": "ms-appdata:///Local/Images/Ubuntu-Logo.png",
+                "commandline": "C:\\windows\\System32\\OpenSSH\\ssh.exe cryptopro.fkthat.net",
+                "guid": "{228a0ca9-b44f-4f0e-b71c-717855e5ed3b}",
+                "hidden": false,
+                "icon": "ms-appdata:///Local/Images/Ubuntu-Icon.png",
+                "name": "CryptoPro"
+            },
+            {
                 "backgroundImage": "ms-appdata:///Local/Images/PwsCore-Logo.png",
                 "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
                 "guid": "{4e0a96ee-ee6c-4830-b95d-22ffb7d171e9}",
@@ -131,6 +139,18 @@
                 "icon": "ms-appdata:///Local/Images/PwsCore-Icon.png",
                 "name": "Projects/FkThat/Templates",
                 "startingDirectory": "%USERPROFILE%\\Projects\\FkThat\\Templates"
+            },
+            {
+                "guid": "{dce96db1-ca88-5325-9050-946230334462}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{5c9cba80-c456-590f-bb52-f73172694832}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

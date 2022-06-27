@@ -5,8 +5,13 @@
     "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
     "editor.fontSize": 14,
     "editor.rulers": [ 100 ],
-    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-    "terminal.integrated.shellArgs.windows": ["-NoLogo"],
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "args": ["-NoLogo"],
+            "icon": "terminal-powershell"
+        }
+    },
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.cursorBlinking": true,
     "mssql.format.datatypeCasing": "lowercase",

@@ -72,7 +72,8 @@
     "redhat.telemetry.enabled": false,
     "extensions.ignoreRecommendations": true,
     "remote.SSH.remotePlatform": {
-        "asgard.fkthat.net": "linux"
+        "asgard.fkthat.net": "linux",
+        "cryptopro.fkthat.net": "linux"
     },
     "files.exclude": {
         "**/.git": false
