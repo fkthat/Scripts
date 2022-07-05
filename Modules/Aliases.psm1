@@ -11,8 +11,8 @@ if($PSVersionTable.Platform -eq "Win32NT") {
     Set-Alias less "${env:ProgramFiles}\Git\usr\bin\less.exe"
     Set-Alias paint "${env:ProgramFiles}\paint.net\PaintDotNet.exe"
     Set-Alias procexp "${env:ProgramFiles}\WindowsApps\Microsoft.SysinternalsSuite_2.0.1.0_x64__8wekyb3d8bbwe\Tools\procexp.exe"
-    Set-Alias vi "${env:ProgramFiles}\Vim\vim82\vim.exe"
-    Set-Alias vim "${env:ProgramFiles}\Vim\vim82\vim.exe"
+    Set-Alias vi "${env:ProgramFiles}\Vim\vim90\vim.exe"
+    Set-Alias vim "${env:ProgramFiles}\Vim\vim90\vim.exe"
 
     Set-Alias dotnet-core-uninstall "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
     Set-Alias glab "${env:ProgramFiles(x86)}\glab\glab.exe"

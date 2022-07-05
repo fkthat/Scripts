@@ -17,7 +17,11 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 # GitHub CLI
 #
 
-Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+$gh = "$env:ProgramFiles\GitHub CLI\gh.exe"
+
+if(Test-Path $gh) { 
+    Invoke-Expression -Command $(& $gh completion -s powershell | Out-String)
+}
 
 #
 # Dotnet CLI

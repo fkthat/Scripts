@@ -174,17 +174,13 @@ function Test-ElevatedUser {
     }
 }
 
-function Reset-EnvironmentVariables {
+function Reset-Path {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
         [ValidateSet('user', 'machine')]
         $Scope = 'user'
     )
-
-    Set-EnvironmentVariable 'VBOX_USER_HOME' `
-        -Value '%USERPROFILE%\VirtualBox\Config' `
-        -Scope User -Type ExpandString
 
     Set-EnvironmentVariable 'PATH' `
         -Value '%ProgramFiles%\dotnet;%ProgramFiles%\Git\bin;%USERPROFILE%\.dotnet\tools' `
