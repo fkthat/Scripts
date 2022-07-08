@@ -28,6 +28,7 @@ Class EdgeSearchEngines : System.Management.Automation.IValidateSetValuesGenerat
         return [EdgeSearchEngines]::engines
     }
 }
+
 function Get-EdgeSearchEngine {
     [EdgeSearchEngines]::GetAll()
 }

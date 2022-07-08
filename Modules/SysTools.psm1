@@ -199,7 +199,7 @@ function Reset-Path {
 
 function New-DevelopmentCertificates {
     $ca = 'FkThat Development CA'
-    $domain = 'home.arpa'
+    $domain = 'fkthat.net'
 
     $password =
     '01000000d08c9ddf0115d1118c7a00c04fc297eb01000000ba083c6a0e76564d874416c8fc43731c00' +

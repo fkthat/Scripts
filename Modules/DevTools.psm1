@@ -178,7 +178,10 @@ function New-CoverageReport {
         # Output folder. Default to the generated temporary folder.
         [Parameter(Mandatory = $false)]
         [string]
-        $OutDir = (Get-TemporaryPath)
+        $OutDir = (Get-TemporaryPath),
+        [Parameter()]
+        [switch]
+        $Open
     )
 
     begin {
@@ -186,7 +189,7 @@ function New-CoverageReport {
     }
 
     process {
-        $reports += $Name
+        $reports += $Path
     }
 
     end {
@@ -194,7 +197,14 @@ function New-CoverageReport {
         $log = reportgenerator -reports:$r -targetdir:$OutDir
 
         if($?) {
-            Join-Path $OutDir 'index.html'
+            Join-Path $OutDir 'index.html' -OutVariable html
+
+            if($Open) {
+                Start-Process "$html"
+            }
+            else {
+                Write-Output "$html"
+            }
         }
         else {
             Write-Host $log
